@@ -1,0 +1,94 @@
+// app/Layout.module.scss
+
+// Variables de couleurs (optionnel, mais bonne pratique)
+$primary-color: #2563eb; // Bleu similaire à l'ancien Tailwind blue-600
+$secondary-color: #ef4444; // Rouge similaire à l'ancien Tailwind red-600
+$text-color: #1f2937; // Gris foncé
+$bg-color: #f9fafb; // Gris très clair
+
+:global(html) {
+  scroll-behavior: smooth;
+}
+
+.body {
+  font-family: var(--font-inter); // Utilise la police Inter importée
+  color: $text-color;
+  background-color: $bg-color;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; // Bonne pratique
+}
+
+// Réinitialisation globale des liens
+:global(a) {
+  text-decoration: none;
+  color: inherit; // Les liens hériteront de la couleur du texte parent
+}
+
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #111827; // Gris très foncé
+  color: #f9fafb;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+// --- Classes utilitaires ---
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 640px) { // sm
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 1024px) { // lg
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: white; // Par défaut blanc, peut être override
+}
+
+.sectionTitle {
+  font-size: 2.25rem; // text-4xl
+  font-weight: 700; // font-bold
+  text-align: center;
+  color: $text-color;
+  margin-bottom: 3rem; // mb-12
+}
+
+// --- Classes AJOUTÉES ---
+
+.sectionBgGray {
+  background-color: #f3f4f6; // bg-gray-100
+}
+
+.maxWidthLg {
+  // Concerne le contenu *dans* le container.
+  // max-w-3xl (768px)
+  max-width: 48rem; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionDescription {
+  text-align: center;
+  color: #4b5563; // text-gray-600
+  margin-bottom: 2rem; // mb-8
+  max-width: 42rem; // max-w-2xl
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.125rem; // text-lg
+  line-height: 1.6;
+}
