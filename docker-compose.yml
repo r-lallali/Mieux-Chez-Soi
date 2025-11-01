@@ -1,0 +1,27 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  app:
+    # Construit l'image en utilisant notre Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    # Nom de l'image (optionnel mais propre)
+    image: mieux-chez-soi-prod
+    
+    # S'assure que le conteneur redémarre s'il plante
+    restart: always
+    
+    # Variables d'environnement pour la production
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # IMPORTANT : Chargez vos secrets (Resend) ici
+      # Vous pouvez les mettre directement ou utiliser un fichier .env
+      - RESEND_API_KEY=${RESEND_API_KEY} 
+      
+    ports:
+      # Lie le port 3000 de la machine au port 3000 du conteneur
+      - "3000:3000"
