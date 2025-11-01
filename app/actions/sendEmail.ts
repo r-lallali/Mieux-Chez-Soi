@@ -41,13 +41,12 @@ export async function sendEmail(
   }
 
   const { name, email, phone, message } = validatedFields.data;
-
-  // 2. Tenter d'envoyer l'email (REMPLACE L'ANCIENNE SIMULATION)
+  
   try {
     const { data, error } = await resend.emails.send({
       // IMPORTANT : Pour les tests, Resend vous autorise à utiliser "onboarding@resend.dev"
       // Pour la production, vous DEVEZ vérifier votre propre domaine (ex: "contact@mieux-chez-soi.com")
-      from: 'Contact  <contact.mieux-chezsoi.fr>',
+      from: 'Mieux Chez Soi  <no-reply@contact.mieux-chezsoi.fr>',
       
       // Mettez l'email où VOUS voulez recevoir les devis
       to: ['lallaliralys@gmail.com'], 
@@ -56,7 +55,6 @@ export async function sendEmail(
       
       // L'email que vous recevrez
       html: `
-        <h1>Nouvelle demande de devis</h1>
         <p><strong>Nom:</strong> ${name}</p>
         <p><strong>Email du client:</strong> ${email}</p>
         <p><strong>Téléphone:</strong> ${phone || 'Non fourni'}</p>

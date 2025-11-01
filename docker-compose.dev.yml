@@ -1,0 +1,26 @@
+# docker-compose.dev.yml
+version: '3.8'
+
+services:
+  app:
+    # Ne pas utiliser l'image prod, mais le tag "dev"
+    image: mieux-chez-soi-dev
+    
+    # Important : Surcharge la commande pour lancer le serveur de dev
+    command: npm run dev
+    
+    # Variables d'environnement pour le développement
+    environment:
+      - NODE_ENV=development
+    
+    # C'est la partie la plus importante :
+    # "Monte" votre code local à l'intérieur du conteneur
+    volumes:
+      # Lie le dossier actuel (.) au dossier /app dans le conteneur
+      - .:/app
+      
+      # Exceptions (TRÈS IMPORTANTES) :
+      # Empêche votre node_modules local d'écraser celui du conteneur
+      - /app/node_modules
+      # Laisse le conteneur gérer son propre cache .next
+      - /app/.next
