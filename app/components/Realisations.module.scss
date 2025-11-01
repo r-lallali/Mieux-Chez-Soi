@@ -1,0 +1,48 @@
+// app/components/Realisations.module.scss
+@import '../Layout.module.scss'; // Importer les variables globales
+
+.realisationsGrid {
+  display: grid;
+  grid-template-columns: 1fr; // 1 colonne sur mobile
+  gap: 2rem; // gap-8
+
+  @media (min-width: 768px) { // md
+    grid-template-columns: repeat(2, 1fr); // 2 colonnes sur desktop
+  }
+}
+
+.realisationCard {
+  background-color: white;
+  border-radius: 0.75rem; // rounded-lg
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); // shadow-lg
+  overflow: hidden; // Important pour le border-radius de l'image
+  transition: all 0.3s ease-out;
+}
+
+.imageContainer {
+  position: relative; // Nécessaire pour Next/Image en mode 'fill'
+  width: 100%;
+  // Donne un ratio 16:9 à l'image
+  padding-top: 66.66%; // (hauteur / largeur * 100)
+  
+  img {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+  }
+}
+
+.textContainer {
+  padding: 1.5rem; // p-6
+}
+
+.realisationTitle {
+  font-size: 1.25rem; // text-xl
+  font-weight: 600; // font-semibold
+  color: $text-color; // text-gray-900
+  margin-bottom: 0.5rem; // mb-2
+}
+
+.realisationDescription {
+  color: #4b5563; // text-gray-600
+  line-height: 1.6;
+}

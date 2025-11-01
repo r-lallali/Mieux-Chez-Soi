@@ -1,20 +1,18 @@
 // app/components/Header.tsx
-"use client"; // Client Component pour les interactions et animations
+"use client"; 
 import Link from "next/link";
 import { HardHat } from "lucide-react";
-import { motion, Variants } from "framer-motion"; // <-- MODIFIÉ
-import styles from './Header.module.scss'; // Import CSS Module
+import { motion, Variants } from "framer-motion"; 
+import styles from './Header.module.scss'; 
 
 export default function Header() {
-  // --- MODIFIÉ ---
   const headerVariants: Variants = {
     hidden: { y: -100, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120, damping: 20 } },
   };
 
-  // --- MODIFIÉ ---
   const linkVariants: Variants = {
-    hover: { scale: 1.05, color: '#2563eb' }, // Couleur primaire
+    hover: { scale: 1.05, color: '#2563eb' }, 
     tap: { scale: 0.95 },
   };
 
@@ -30,22 +28,28 @@ export default function Header() {
           <HardHat className={styles.logoIcon} />
           <motion.span
             className={styles.logoText}
-            whileHover={{ color: '#2563eb' }} // Change de couleur au survol
+            whileHover={{ color: '#2563eb' }}
           >
-            Mieux Chez Soi
+            Mieux chez soi
           </motion.span>
         </Link>
         <div className={styles.navLinks}>
           <motion.a href="#services" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
             Nos Services
           </motion.a>
+          
+          {/* --- AJOUT DU NOUVEAU LIEN --- */}
+          <motion.a href="#realisations" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+            Réalisations
+          </motion.a>
+          
           <motion.a href="#contact" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
             Contact
           </motion.a>
           <motion.a
             href="tel:0123456789"
             className={styles.urgentButton}
-            whileHover={{ scale: 1.05, backgroundColor: '#b91c1c' }} // Rouge plus foncé au survol
+            whileHover={{ scale: 1.05, backgroundColor: '#b91c1c' }}
             whileTap={{ scale: 0.95 }}
           >
             Urgence 24/7

@@ -1,18 +1,18 @@
 // app/components/ContactFormStepper.tsx
 "use client";
 
-import { useState, useEffect, useRef, ChangeEvent } from "react"; // <-- MODIFIÉ
-import { useFormState, useFormStatus } from "react-dom";
+import { useState, useEffect, useRef, ChangeEvent, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { sendEmail, type FormState } from "../actions/sendEmail";
 import { User, Mail, CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { step1Schema } from "../lib/schemas"; // <-- NOUVEL IMPORT
 
 import styles from './ContactFormStepper.module.scss';
 
-// ... (Le composant SubmitButton reste inchangé)
+// ... (SubmitButton reste inchangé)
 function SubmitButton() {
   const { pending } = useFormStatus();
-
   return (
     <motion.button
       type="submit"
@@ -26,7 +26,6 @@ function SubmitButton() {
   );
 }
 
-// --- Composant principal du Stepper ---
 const initialState: FormState = {
   success: false,
   message: "",
@@ -34,10 +33,9 @@ const initialState: FormState = {
 
 export default function ContactFormStepper() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [state, formAction] = useFormState(sendEmail, initialState);
+  const [state, formAction] = useActionState(sendEmail, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // --- NOUVEAU : État pour stocker TOUTES les données du formulaire ---
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -45,24 +43,47 @@ export default function ContactFormStepper() {
     message: "",
   });
 
-  // --- NOUVEAU : Gestionnaire pour mettre à jour l'état ---
+  // --- NOUVEAU : État pour les erreurs de validation CÔTÉ CLIENT ---
+  const [clientErrors, setClientErrors] = useState<Record<string, string[] | undefined> | null>(null);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value,
     }));
+    
+    // --- NOUVEAU : Nettoyer l'erreur client dès que l'utilisateur corrige ---
+    if (clientErrors && clientErrors[name]) {
+      setClientErrors(prev => ({
+        ...prev,
+        [name]: undefined,
+      }));
+    }
   };
 
-  // Gérer la navigation après la soumission du formulaire
+  // --- NOUVEAU : Fonction de validation pour passer à l'étape 2 ---
+  const handleNextStep = () => {
+    // 1. Valider uniquement les données de l'étape 1 avec notre schéma importé
+    const result = step1Schema.safeParse(formData);
+
+    // 2. Si échec, mettre à jour les erreurs client et rester à l'étape 1
+    if (!result.success) {
+      setClientErrors(result.error.flatten().fieldErrors);
+    } else {
+      // 3. Si succès, nettoyer les erreurs et passer à l'étape 2
+      setClientErrors(null);
+      setCurrentStep(2);
+    }
+  };
+
+  // (useEffect reste inchangé)
   useEffect(() => {
     if (state.success) {
-      setCurrentStep(3); // Aller à l'étape 3 (Succès)
+      setCurrentStep(3);
       formRef.current?.reset();
-      // Vider aussi notre état local
       setFormData({ name: "", email: "", phone: "", message: "" });
     } else if (state.message && !state.success && state.errors) {
-      // Si erreurs, revenir à la première étape contenant une erreur
       if (state.errors.name || state.errors.email || state.errors.phone) {
         setCurrentStep(1);
       } else if (state.errors.message) {
@@ -71,22 +92,20 @@ export default function ContactFormStepper() {
     }
   }, [state]);
 
-  // ... (Les objets variants et le composant StepperVisual restent inchangés)
+  // (variants et StepperVisual restent inchangés)
   const stepVariants: Variants = {
     hidden: { opacity: 0, x: 50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
     exit: { opacity: 0, x: -50, transition: { duration: 0.3, ease: "easeIn" } },
   };
-
   const successVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 150, damping: 20, delay: 0.2 } },
     exit: { opacity: 0, scale: 0.8 },
-  }
-
+  };
   const StepperVisual = () => (
     <div className={styles.stepperVisual}>
-      {/* Étape 1 */}
+      {/* ... (contenu du stepper visuel inchangé) ... */}
       <div className={styles.stepItem}>
         <div className={`${styles.stepIcon} ${currentStep >= 1 ? styles.active : ''}`}>
           {currentStep > 1 ? <CheckCircle size={24} /> : <User size={24} />}
@@ -94,7 +113,6 @@ export default function ContactFormStepper() {
         <p className={`${styles.stepLabel} ${currentStep >= 1 ? styles.active : ''}`}>Informations</p>
       </div>
       <div className={`${styles.stepLine} ${currentStep > 1 ? styles.active : ''}`}></div>
-      {/* Étape 2 */}
       <div className={styles.stepItem}>
         <div className={`${styles.stepIcon} ${currentStep >= 2 ? styles.active : ''}`}>
           {currentStep > 2 ? <CheckCircle size={24} /> : <Mail size={24} />}
@@ -102,7 +120,6 @@ export default function ContactFormStepper() {
         <p className={`${styles.stepLabel} ${currentStep >= 2 ? styles.active : ''}`}>Message</p>
       </div>
       <div className={`${styles.stepLine} ${currentStep > 2 ? styles.active : ''}`}></div>
-      {/* Étape 3 */}
       <div className={styles.stepItem}>
         <div className={`${styles.stepIcon} ${currentStep === 3 ? styles.success : ''} ${currentStep === 3 ? '' : styles.inactive}`}>
           <CheckCircle size={24} />
@@ -111,7 +128,6 @@ export default function ContactFormStepper() {
       </div>
     </div>
   );
-
 
   return (
     <motion.div
@@ -122,7 +138,7 @@ export default function ContactFormStepper() {
     >
       <StepperVisual />
 
-      {/* ... (Message d'erreur global - inchangé) ... */}
+      {/* Message d'erreur global (inchangé) */}
       <AnimatePresence mode="wait">
         {!state.success && state.message && currentStep !== 3 && (
           <motion.div
@@ -157,40 +173,56 @@ export default function ContactFormStepper() {
                   <input
                     type="text" id="name" name="name" required
                     className={styles.input}
-                    value={formData.name} // <-- MODIFIÉ
-                    onChange={handleChange} // <-- MODIFIÉ
+                    value={formData.name} 
+                    onChange={handleChange} 
                   />
-                  {state.errors?.name && <p className={styles.errorText}>{state.errors.name[0]}</p>}
+                  {/* --- MODIFIÉ : Affiche l'erreur client OU l'erreur serveur --- */}
+                  {(clientErrors?.name || state.errors?.name) && (
+                    <p className={styles.errorText}>
+                      {clientErrors?.name?.[0] || state.errors?.name?.[0]}
+                    </p>
+                  )}
                 </div>
                 <div className={styles.inputField}>
                   <label htmlFor="email" className={styles.label}>Email*</label>
                   <input
                     type="email" id="email" name="email" required
                     className={styles.input}
-                    value={formData.email} // <-- MODIFIÉ
-                    onChange={handleChange} // <-- MODIFIÉ
+                    value={formData.email} 
+                    onChange={handleChange} 
                   />
-                  {state.errors?.email && <p className={styles.errorText}>{state.errors.email[0]}</p>}
+                  {/* --- MODIFIÉ : Affiche l'erreur client OU l'erreur serveur --- */}
+                  {(clientErrors?.email || state.errors?.email) && (
+                    <p className={styles.errorText}>
+                      {clientErrors?.email?.[0] || state.errors?.email?.[0]}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className={styles.inputField}>
-                <label htmlFor="phone" className={styles.label}>Téléphone (Optionnel)</label>
+                <label htmlFor="phone" className={styles.label}>Téléphone*</label>
                 <input
                   type="tel" id="phone" name="phone"
                   className={styles.input}
-                  value={formData.phone} // <-- MODIFIÉ
-                  onChange={handleChange} // <-- MODIFIÉ
+                  value={formData.phone} 
+                  onChange={handleChange} 
                 />
+                 {(clientErrors?.phone || state.errors?.phone) && (
+                    <p className={styles.errorText}>
+                      {clientErrors?.phone?.[0] || state.errors?.phone?.[0]}
+                    </p>
+                  )}
               </div>
               <div className={styles.navigationButtons}>
-                <button type="button" onClick={() => setCurrentStep(2)} className={styles.nextButton}>
+                {/* --- MODIFIÉ : Le bouton "Suivant" utilise handleNextStep --- */}
+                <button type="button" onClick={handleNextStep} className={styles.nextButton}>
                   Suivant <ArrowRight size={18} />
                 </button>
               </div>
             </motion.div>
           )}
 
-          {/* --- ÉTAPE 2: MESSAGE / DEVIS --- */}
+          {/* --- ÉTAPE 2: MESSAGE / DEVIS (inchangée) --- */}
           {currentStep === 2 && (
             <motion.div
               key="step2"
@@ -200,21 +232,21 @@ export default function ContactFormStepper() {
               exit="exit"
               className={styles.stepPanel}
             >
-              {/* --- NOUVEAU : Champs cachés pour conserver les données de l'étape 1 --- */}
               <input type="hidden" name="name" value={formData.name} />
               <input type="hidden" name="email" value={formData.email} />
               <input type="hidden" name="phone" value={formData.phone} />
-
               <h3 className={styles.stepTitle}>2. Votre Projet</h3>
               <div className={styles.inputField}>
                 <label htmlFor="message" className={styles.label}>Décrivez votre projet*</label>
                 <textarea
                   id="message" name="message" rows={6} required
                   className={styles.textarea}
-                  value={formData.message} // <-- MODIFIÉ
-                  onChange={handleChange} // <-- MODIFIÉ
+                  value={formData.message} 
+                  onChange={handleChange} 
                 ></textarea>
-                {state.errors?.message && <p className={styles.errorText}>{state.errors.message[0]}</p>}
+                {state.errors?.message && (
+                  <p className={styles.errorText}>{state.errors.message[0]}</p>
+                )}
               </div>
               <div className={styles.navigationButtons}>
                 <button type="button" onClick={() => setCurrentStep(1)} className={styles.prevButton}>
@@ -225,9 +257,8 @@ export default function ContactFormStepper() {
             </motion.div>
           )}
 
-          {/* --- ÉTAPE 3: CONFIRMATION --- */}
+          {/* --- ÉTAPE 3: CONFIRMATION (inchangée) --- */}
           {currentStep === 3 && (
-            // ... (Cette section reste inchangée)
             <motion.div
               key="step3"
               variants={successVariants}

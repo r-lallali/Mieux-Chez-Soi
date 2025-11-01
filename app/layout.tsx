@@ -9,7 +9,7 @@ import Header from './components/Header'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "BâtiPro - Rénovation & Urgences Bâtiment",
+  title: "Mieux Chez-Soi",
   description: "Services de rénovation, dépannage urgent et chantiers neufs.",
 };
 
@@ -24,7 +24,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <footer className={styles.footer}> {/* Style du module SCSS */}
-          © 2025 BâtiPro. Tous droits réservés.
+          © 2025 Mieux Chez Soi. Tous droits réservés.
         </footer>
       </body>
     </html>
