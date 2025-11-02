@@ -39,29 +39,6 @@ export default function HomePage() {
           <Services />
         </div>
       </motion.section>
-
-      {/* --- 2. NOUVELLE SECTION RÉALISATIONS --- */}
-      <motion.section
-        id="realisations"
-        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris pour alterner
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }} // Déclencher un peu plus tôt
-        variants={sectionVariants}
-      >
-        <div className={layoutStyles.container}>
-          <motion.h2
-            className={layoutStyles.sectionTitle}
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
-            viewport={{ once: true }}
-          >
-            Nos Réalisations
-          </motion.h2>
-          <Realisations />
-        </div>
-      </motion.section>
-
       {/* --- SECTION CONTACT (INCHANGÉE) --- */}
       <motion.section
         id="contact"
@@ -91,6 +68,29 @@ export default function HomePage() {
           <ContactFormStepper />
         </div>
       </motion.section>
+      {/* --- 2. NOUVELLE SECTION RÉALISATIONS --- */}
+      <motion.section
+        id="realisations"
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris pour alterner
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }} // Déclencher un peu plus tôt
+        variants={sectionVariants}
+      >
+        <div className={layoutStyles.container}>
+          <motion.h2
+            className={layoutStyles.sectionTitle}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
+            viewport={{ once: true }}
+          >
+            Nos Réalisations
+          </motion.h2>
+          <Realisations />
+        </div>
+      </motion.section>
+
+      
     </div>
   );
 }
