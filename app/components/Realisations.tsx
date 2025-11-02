@@ -1,16 +1,14 @@
 // app/components/Realisations.tsx
 "use client";
 import { motion, Variants } from "framer-motion";
-import Image from "next/image"; // Important pour la performance des images
+import Image from "next/image";
 import styles from './Realisations.module.scss';
 
-// --- VOS RÉALISATIONS (MISES À JOUR AVEC LES IMAGES LOCALES) ---
 const realisationsData = [
   {
     id: 1,
     title: "Rénovation Cuisine Moderne",
     description: "Transformation complète d'une cuisine datée en un espace moderne et fonctionnel.",
-    // Le chemin commence par "/" car il est dans /public
     imageUrl: "/images/realisations/1-cuisine-moderne.jpg",
   },
   {
@@ -33,12 +31,8 @@ const realisationsData = [
   }
 ];
 
-// --- IMPORTANT : Dimensions de vos images ---
-// Pour que Next/Image fonctionne avec des images locales SANS import,
-// vous devez leur fournir une largeur (width) et une hauteur (height).
-// (Essayez de redimensionner vos images pour qu'elles aient toutes la même taille)
 const IMAGE_WIDTH = 1000;
-const IMAGE_HEIGHT = 750; // (Exemple pour un ratio 4:3)
+const IMAGE_HEIGHT = 750;
 
 export default function Realisations() {
   
@@ -75,12 +69,10 @@ export default function Realisations() {
             <Image
               src={item.imageUrl}
               alt={item.title}
-              // --- MODIFICATION REQUISE POUR LES IMAGES LOCALES ---
-              // Remplacez 'fill' par 'width' et 'height'
               width={IMAGE_WIDTH}
               height={IMAGE_HEIGHT}
               sizes="(max-width: 768px) 100vw, 50vw"
-              style={{ objectFit: 'cover' }} // 'objectFit' est toujours utile
+              style={{ objectFit: 'cover' }}
             />
           </div>
           <div className={styles.textContainer}>
