@@ -1,48 +1,48 @@
 // app/components/Realisations.module.scss
-@import '../Layout.module.scss'; // Importer les variables globales
+@import '../Layout.module.scss'; 
 
 .realisationsGrid {
   display: grid;
-  grid-template-columns: 1fr; // 1 colonne sur mobile
-  gap: 2rem; // gap-8
+  grid-template-columns: 1fr; 
+  gap: 2rem; 
 
-  @media (min-width: 768px) { // md
-    grid-template-columns: repeat(2, 1fr); // 2 colonnes sur desktop
+  @media (min-width: 768px) { 
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .realisationCard {
   background-color: white;
-  border-radius: 0.75rem; // rounded-lg
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); // shadow-lg
-  overflow: hidden; // Important pour le border-radius de l'image
+  border-radius: 0.75rem; 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+  overflow: hidden; // Garde l'image dans les coins arrondis
   transition: all 0.3s ease-out;
 }
 
 .imageContainer {
-  position: relative; // Nécessaire pour Next/Image en mode 'fill'
+  position: relative; 
   width: 100%;
-  // Donne un ratio 16:9 à l'image
-  padding-top: 66.66%; // (hauteur / largeur * 100)
-  
-  img {
-    border-top-left-radius: 0.75rem;
-    border-top-right-radius: 0.75rem;
+
+  .realisationImage {
+    display: block; // Assure qu'il n'y a pas d'espace en dessous
+    width: 100%; // Prend toute la largeur de la carte
+    height: auto; // Garde l'aspect ratio défini par les props (1000x750)
+    object-fit: cover; // S'assure que l'image couvre la zone
   }
 }
 
 .textContainer {
-  padding: 1.5rem; // p-6
+  padding: 1.5rem; 
 }
 
 .realisationTitle {
-  font-size: 1.25rem; // text-xl
-  font-weight: 600; // font-semibold
-  color: $text-color; // text-gray-900
-  margin-bottom: 0.5rem; // mb-2
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  color: $text-color; 
+  margin-bottom: 0.5rem; 
 }
 
 .realisationDescription {
-  color: #4b5563; // text-gray-600
+  color: #4b5563; 
   line-height: 1.6;
 }

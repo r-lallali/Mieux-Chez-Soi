@@ -72,7 +72,7 @@ export default function Realisations() {
               width={IMAGE_WIDTH}
               height={IMAGE_HEIGHT}
               sizes="(max-width: 768px) 100vw, 50vw"
-              style={{ objectFit: 'cover' }}
+              className={styles.realisationImage} 
             />
           </div>
           <div className={styles.textContainer}>

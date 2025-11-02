@@ -52,8 +52,7 @@ export default function ContactFormStepper() {
       ...prev,
       [name]: value,
     }));
-    
-    // --- NOUVEAU : Nettoyer l'erreur client dès que l'utilisateur corrige ---
+
     if (clientErrors && clientErrors[name]) {
       setClientErrors(prev => ({
         ...prev,
@@ -62,22 +61,17 @@ export default function ContactFormStepper() {
     }
   };
 
-  // --- NOUVEAU : Fonction de validation pour passer à l'étape 2 ---
   const handleNextStep = () => {
-    // 1. Valider uniquement les données de l'étape 1 avec notre schéma importé
+ 
     const result = step1Schema.safeParse(formData);
-
-    // 2. Si échec, mettre à jour les erreurs client et rester à l'étape 1
     if (!result.success) {
       setClientErrors(result.error.flatten().fieldErrors);
     } else {
-      // 3. Si succès, nettoyer les erreurs et passer à l'étape 2
       setClientErrors(null);
       setCurrentStep(2);
     }
   };
 
-  // (useEffect reste inchangé)
   useEffect(() => {
     if (state.success) {
       setCurrentStep(3);
@@ -92,7 +86,6 @@ export default function ContactFormStepper() {
     }
   }, [state]);
 
-  // (variants et StepperVisual restent inchangés)
   const stepVariants: Variants = {
     hidden: { opacity: 0, x: 50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
@@ -105,7 +98,6 @@ export default function ContactFormStepper() {
   };
   const StepperVisual = () => (
     <div className={styles.stepperVisual}>
-      {/* ... (contenu du stepper visuel inchangé) ... */}
       <div className={styles.stepItem}>
         <div className={`${styles.stepIcon} ${currentStep >= 1 ? styles.active : ''}`}>
           {currentStep > 1 ? <CheckCircle size={24} /> : <User size={24} />}
@@ -137,8 +129,6 @@ export default function ContactFormStepper() {
       transition={{ duration: 0.5, delay: 0.4 }}
     >
       <StepperVisual />
-
-      {/* Message d'erreur global (inchangé) */}
       <AnimatePresence mode="wait">
         {!state.success && state.message && currentStep !== 3 && (
           <motion.div
@@ -156,7 +146,6 @@ export default function ContactFormStepper() {
 
       <form ref={formRef} action={formAction} className={styles.formContent}>
         <AnimatePresence mode="wait">
-          {/* --- ÉTAPE 1: INFORMATIONS --- */}
           {currentStep === 1 && (
             <motion.div
               key="step1"
@@ -176,7 +165,6 @@ export default function ContactFormStepper() {
                     value={formData.name} 
                     onChange={handleChange} 
                   />
-                  {/* --- MODIFIÉ : Affiche l'erreur client OU l'erreur serveur --- */}
                   {(clientErrors?.name || state.errors?.name) && (
                     <p className={styles.errorText}>
                       {clientErrors?.name?.[0] || state.errors?.name?.[0]}
@@ -191,7 +179,6 @@ export default function ContactFormStepper() {
                     value={formData.email} 
                     onChange={handleChange} 
                   />
-                  {/* --- MODIFIÉ : Affiche l'erreur client OU l'erreur serveur --- */}
                   {(clientErrors?.email || state.errors?.email) && (
                     <p className={styles.errorText}>
                       {clientErrors?.email?.[0] || state.errors?.email?.[0]}
@@ -214,15 +201,12 @@ export default function ContactFormStepper() {
                   )}
               </div>
               <div className={styles.navigationButtons}>
-                {/* --- MODIFIÉ : Le bouton "Suivant" utilise handleNextStep --- */}
                 <button type="button" onClick={handleNextStep} className={styles.nextButton}>
                   Suivant <ArrowRight size={18} />
                 </button>
               </div>
             </motion.div>
           )}
-
-          {/* --- ÉTAPE 2: MESSAGE / DEVIS (inchangée) --- */}
           {currentStep === 2 && (
             <motion.div
               key="step2"
@@ -256,8 +240,6 @@ export default function ContactFormStepper() {
               </div>
             </motion.div>
           )}
-
-          {/* --- ÉTAPE 3: CONFIRMATION (inchangée) --- */}
           {currentStep === 3 && (
             <motion.div
               key="step3"
