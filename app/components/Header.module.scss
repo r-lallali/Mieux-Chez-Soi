@@ -39,12 +39,11 @@
 }
 
 .navLinks {
-  display: none; // --- MODIFIÉ : Caché par défaut
+  display: none; // Caché par défaut
   align-items: center;
   gap: 1rem; 
 
-  // --- NOUVEAU : Affiché seulement sur les grands écrans ---
-  @media (min-width: 900px) { // (Ajustez ce point de rupture si nécessaire)
+  @media (min-width: 900px) { // (Point de rupture desktop)
     display: flex;
   }
 }
@@ -63,16 +62,23 @@
   border-radius: 0.375rem; 
   font-weight: 600; 
   transition: background-color 0.3s ease; 
-  // Cache le bouton "urgence" de la nav principale sur mobile/tablette
   display: none;
   
   @media (min-width: 900px) {
-    display: inline-flex; // Affiche sur desktop
+    display: inline-flex; 
   }
 }
 
 
-// --- NOUVEAUX STYLES POUR LE MOBILE ---
+// --- STYLES MOBILES (Simplifiés) ---
+
+.mobilePopover {
+  display: flex; 
+  
+  @media (min-width: 900px) { // Caché sur desktop
+    display: none;
+  }
+}
 
 .mobileMenuButton {
   background: none;
@@ -80,14 +86,13 @@
   cursor: pointer;
   color: $text-color;
   padding: 0.5rem;
-  display: flex; // Affiché par défaut
+  display: flex; 
   align-items: center;
   justify-content: center;
-
-  // --- NOUVEAU : Caché sur les grands écrans ---
-  @media (min-width: 900px) {
-    display: none;
-  }
+  
+  // --- MODIFIÉ : z-index pour être au-dessus du panel ---
+  z-index: 110; 
+  position: relative; // Requis pour que z-index fonctionne
 }
 
 .mobileNav {
@@ -95,28 +100,17 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100vh; // ou 100dvh pour une meilleure compatibilité mobile
   background-color: white;
-  z-index: 100; // Au-dessus du header
+  z-index: 100; // En dessous du bouton X
   display: flex;
   flex-direction: column;
-}
-
-.mobileNavHeader {
-  display: flex;
-  justify-content: space-between;
+  // --- MODIFIÉ : Centrage direct ---
+  justify-content: center;
   align-items: center;
-  padding: 0 1rem; // Correspond au padding du .container
-  height: 4rem; // Même hauteur que le header
-  border-bottom: 1px solid #e5e7eb; // Ligne de séparation
-
-  @media (min-width: 640px) { 
-    padding: 0 1.5rem;
-  }
-  @media (min-width: 1024px) { 
-    padding: 0 2rem;
-  }
 }
+
+// --- SUPPRIMÉ : .mobileNavHeader n'est plus utilisé ---
 
 .mobileNavLinks {
   display: flex;
@@ -125,13 +119,17 @@
   justify-content: center;
   gap: 2rem;
   padding: 2rem;
-  flex-grow: 1;
+  width: 100%; // Prend toute la largeur
+}
 
-  a {
-    font-size: 1.5rem; // text-2xl
-    font-weight: 600;
-    color: $text-color;
-  }
+// --- NOUVEAU : Style pour les liens individuels (anciennement 'a') ---
+.mobileNavLink {
+  font-size: 1.5rem; 
+  font-weight: 600;
+  color: $text-color;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-decoration: none; // Assure qu'il n'y a pas de soulignement
 }
 
 .mobileUrgentButton {
@@ -140,7 +138,10 @@
   padding: 0.75rem 1.5rem; 
   border-radius: 0.5rem; 
   font-weight: 600; 
-  width: 100%;
+  width: 90%; // Un peu de marge
+  max-width: 400px;
   text-align: center;
   margin-top: 1rem;
+  font-size: 1.2rem; 
+  text-decoration: none;
 }
