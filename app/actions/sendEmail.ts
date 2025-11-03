@@ -33,7 +33,7 @@ export async function sendEmail(
   try {
     const { data, error } = await resend.emails.send({
 
-      from: 'Mieux Chez Soi  <no-reply@devis.mieux-chezsoi.fr>',
+      from: 'Nouveau devis MCS<no-reply@devis.mieux-chezsoi.fr>',
 
       to: ['lallaliralys@gmail.com'], 
       
