@@ -15,7 +15,7 @@
 }
 
 .title {
-  @extend .sectionTitle; // Réutilise le style de titre
+  @extend .sectionTitle; // Réutilise le style de titre (OK car dans Layout.module.scss)
   text-align: left;
   margin-bottom: 0.5rem;
 }
@@ -46,11 +46,26 @@
   }
 }
 
+// --- MODIFICATION ICI ---
+// Remplacement de @extend par les styles directs
 .ctaButton {
-  @extend .callToAction; // Réutilise le style du bouton du Hero
+  // Styles de base (similaires à .callToAction)
   background-color: $primary-color;
   color: white;
+  border-radius: 0.375rem; 
+  font-weight: 600; 
+  display: inline-block; 
+  transition: background-color 0.3s ease;
+  text-decoration: none; // Assure que les balises <Link> sont bien stylées
+  border: none;
+  cursor: pointer;
+
+  // Styles spécifiques au bouton de cette page
   padding: 0.75rem 1.5rem;
   font-size: 1.1rem;
   margin-top: 2rem;
+
+  &:hover {
+    background-color: #1d4ed8; // Bleu plus foncé
+  }
 }
