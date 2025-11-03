@@ -2,11 +2,9 @@
 "use client"; // Client Component pour les animations
 import { motion, Variants } from "framer-motion";
 import Hero from "./components/Hero";
-// --- NOUVEAUX IMPORTS ---
-import Stats from "./components/Stats";
+import Stats from "./components/Stats"; // (Import inchangé)
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
-// --- FIN NOUVEAUX IMPORTS ---
 import Services from "./components/Services";
 import Realisations from "./components/Realisations"; 
 import ContactFormStepper from "./components/ContactFormStepper";
@@ -23,10 +21,22 @@ export default function HomePage() {
     <div>
       <Hero />
       
-      {/* --- 1. NOUVELLE SECTION STATS --- */}
-      <Stats />
+      {/* --- MODIFICATION DE LA SECTION STATS --- */}
+      {/* Nous la mettons dans une vraie <section> pour un layout propre */}
+      <motion.section
+        id="stats"
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={sectionVariants}
+      >
+        <div className={layoutStyles.container}>
+          <Stats />
+        </div>
+      </motion.section>
       
-      {/* --- 2. NOUVELLE SECTION À PROPOS --- */}
+      {/* --- SECTION À PROPOS --- */}
       <motion.section
         id="about"
         className={layoutStyles.section}
@@ -48,7 +58,7 @@ export default function HomePage() {
         </div>
       </motion.section>
       
-      {/* --- SECTION SERVICES (INCHANGÉE) --- */}
+      {/* --- SECTION SERVICES --- */}
       <motion.section
         id="services"
         className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
@@ -70,7 +80,7 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* --- SECTION RÉALISATIONS (INCHANGÉE) --- */}
+      {/* --- SECTION RÉALISATIONS --- */}
       <motion.section
         id="realisations"
         className={layoutStyles.section} // Fond blanc
@@ -92,7 +102,7 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* --- 3. NOUVELLE SECTION TÉMOIGNAGES --- */}
+      {/* --- SECTION TÉMOIGNAGES --- */}
       <motion.section
         id="testimonials"
         className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
@@ -114,7 +124,7 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* --- SECTION CONTACT (INCHANGÉE) --- */}
+      {/* --- SECTION CONTACT --- */}
       <motion.section
         id="contact"
         className={layoutStyles.section} // Fond blanc

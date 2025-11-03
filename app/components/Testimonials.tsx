@@ -9,23 +9,23 @@ const testimonialsData = [
     id: 1,
     name: "David L.",
     location: "Courbevoie (92)",
-    rating: 5,
+    rating: 5, 
     quote: "Travail impeccable pour la rénovation de notre salle de bain. Artisans sérieux, à l'écoute et qui respectent les délais. Je recommande !"
   },
   {
     id: 2,
     name: "Sarah M.",
     location: "Paris (75)",
-    rating: 4.5,
+    rating: 5, 
     quote: "Intervention rapide pour une fuite importante. Très professionnels et efficaces. Ils nous ont sauvé notre week-end !"
   },
   {
     id: 3,
     name: "Famille Dubois",
     location: "Gonesse (95)",
-    rating: 5,
+    rating: 5, 
     quote: "Nous avons confié notre projet d'extension à Mieux Chez Soi et le résultat est au-delà de nos espérances. Un grand merci à toute l'équipe."
-  },
+  }
 ];
 
 export default function Testimonials() {
@@ -50,20 +50,28 @@ export default function Testimonials() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      {testimonialsData.map((item) => (
-        <motion.div key={item.id} className={styles.testimonialCard} variants={itemVariants}>
-          <div className={styles.rating}>
-            {Array(item.rating).fill(0).map((_, i) => (
-              <Star key={i} className={styles.starIcon} />
-            ))}
-          </div>
-          <blockquote className={styles.quote}>
-            "{item.quote}"
-          </blockquote>
-          <p className={styles.author}>
-            — {item.name}, <span>{item.location}</span>
-          </p>
-        </motion.div>
+      {testimonialsData
+        // 1. Filtre pour ne garder que les bons avis
+        .filter(item => item.rating >= 4) 
+        .map((item) => (
+          <motion.div key={item.id} className={styles.testimonialCard} variants={itemVariants}>
+            <div className={styles.rating}>
+              
+              {/* --- CORRECTION DE L'ERREUR ICI --- 
+                  On s'assure que la note est un nombre positif ou nul
+                  avant de créer le tableau d'étoiles.
+              */}
+              {Array(Math.max(0, item.rating || 0)).fill(0).map((_, i) => (
+                <Star key={i} className={styles.starIcon} />
+              ))}
+            </div>
+            <blockquote className={styles.quote}>
+              "{item.quote}"
+            </blockquote>
+            <p className={styles.author}>
+              — {item.name}, <span>{item.location}</span>
+            </p>
+          </motion.div>
       ))}
     </motion.div>
   );

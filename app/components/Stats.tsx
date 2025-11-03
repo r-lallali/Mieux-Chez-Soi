@@ -1,13 +1,13 @@
 // app/components/Stats.tsx
 "use client";
-// --- MODIFIÉ : Assurez-vous que useEffect et useRef viennent de "react" ---
+// --- 1. AJOUTER 'useEffect' ---
 import { useRef, useEffect } from "react";
 import { 
   motion, 
   useSpring, 
   useTransform, 
   useInView,
-  Variants 
+  Variants // <-- 2. AJOUTER 'Variants'
 } from "framer-motion";
 import { Briefcase, Smile, Users } from "lucide-react";
 import styles from './Stats.module.scss';
@@ -15,15 +15,14 @@ import styles from './Stats.module.scss';
 // Composant pour un seul compteur animé
 function AnimatedCounter({ value }: { value: number }) {
   
-  // --- CORRECTION MAJEURE ICI ---
+  // --- 3. CORRECTION DU BUG D'ANIMATION ---
   // useSpring n'utilise pas 'duration', mais 'stiffness' et 'damping'.
   const spring = useSpring(0, { 
-    stiffness: 100, // Rigidité du ressort
+    stiffness: 100, // Rigidité
     damping: 25,   // Amortissement
-    mass: 1         // Masse de l'objet (influence l'inertie)
+    mass: 1         
   });
   
-  // Le reste de la logique est correcte
   const displayValue = useTransform(spring, (current) => 
     Math.round(current).toLocaleString('fr-FR')
   );
@@ -33,13 +32,12 @@ function AnimatedCounter({ value }: { value: number }) {
 
   useEffect(() => {
     if (isInView) {
-      spring.set(value); // Déclenche l'animation de 0 à la valeur cible
+      spring.set(value); // Déclenche l'animation
     }
   }, [isInView, value, spring]);
 
   return <motion.span ref={ref}>{displayValue}</motion.span>;
 }
-
 
 export default function Stats() {
   const stats = [
@@ -48,7 +46,7 @@ export default function Stats() {
     { id: 3, value: 15, unit: " ans", label: "d'Expérience", icon: <Users /> },
   ];
 
-  // (Typage des variants, inchangé depuis la correction précédente)
+  // --- 4. AJOUTER LE TYPAGE ---
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -57,14 +55,16 @@ export default function Stats() {
     },
   };
 
+  // --- 5. AJOUTER LE TYPAGE ---
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },
   };
 
   return (
+    // --- 6. MODIFIÉ : Utilise .statsGrid au lieu de .statsContainer ---
     <motion.div 
-      className={styles.statsContainer}
+      className={styles.statsGrid}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"

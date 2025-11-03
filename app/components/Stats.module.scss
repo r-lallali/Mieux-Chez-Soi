@@ -1,59 +1,53 @@
-// app/components/Services.module.scss
+// app/components/Stats.module.scss
 @import '../Layout.module.scss';
 
-// --- NOUVEAU STYLE POUR LE LIEN ---
-.serviceLink {
-  text-decoration: none;
-  color: inherit;
-  display: block; // Assure que le lien prend toute la place
-}
-
-.servicesGrid {
+// --- MODIFIÉ : .statsContainer est devenu .statsGrid ---
+.statsGrid {
+  // --- SUPPRIMÉ : @extend .container (géré par page.tsx) ---
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem; 
-
-  @media (min-width: 768px) { 
-    grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr; // 1 colonne sur mobile
+  gap: 2rem;
+  
+  // --- SUPPRIMÉ : padding, background-color, color, border-radius, margin-top, position, z-index, box-shadow ---
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr); // 3 colonnes sur desktop
+    // --- SUPPRIMÉ : padding, margin-top ---
   }
 }
 
-.serviceCard {
-  background-color: white;
-  padding: 2rem; 
-  border-radius: 0.75rem; 
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
-  text-align: center;
-  transition: all 0.3s ease-out;
-  height: 100%; // Assure que les cartes ont la même hauteur
-}
-
-.iconContainer {
-  // ... (inchangé)
+.statItem {
   display: flex;
-  justify-content: center;
-  margin-bottom: 1rem; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem; // Ajout d'un padding interne pour l'espacement
+}
 
-  svg { 
-    height: 3rem; 
-    width: 3rem; 
+.statIcon {
+  margin-bottom: 0.5rem;
+  color: $primary-color; // --- MODIFIÉ : Couleur pour les icônes
+  
+  svg {
+    width: 2.5rem; 
+    height: 2.5rem;
   }
 }
 
-.icon-0 svg { color: $primary-color; } 
-.icon-1 svg { color: $secondary-color; } 
-.icon-2 svg { color: #10b981; } 
+.statValue {
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  line-height: 1.1;
+  color: $text-color; // --- MODIFIÉ : Couleur du texte
 
-.serviceTitle {
-  // ... (inchangé)
-  font-size: 1.25rem; 
-  font-weight: 600; 
-  color: $text-color; 
-  margin-bottom: 0.5rem; 
+  @media (min-width: 768px) {
+    font-size: 3rem; 
+  }
 }
 
-.serviceDescription {
-  // ... (inchangé)
-  color: #4b5563; 
-  line-height: 1.6;
+.statLabel {
+  font-size: 1rem; 
+  font-weight: 500; 
+  color: #4b5563; // --- MODIFIÉ : Couleur du texte
+  margin: 0;
 }
