@@ -1,20 +1,29 @@
 // app/components/Stats.tsx
 "use client";
-// --- MODIFIÉ : Ajout de 'useEffect' et 'Variants' ---
+// --- MODIFIÉ : Assurez-vous que useEffect et useRef viennent de "react" ---
 import { useRef, useEffect } from "react";
 import { 
   motion, 
   useSpring, 
   useTransform, 
   useInView,
-  Variants // <-- 1. IMPORTER VARIANTS
+  Variants 
 } from "framer-motion";
 import { Briefcase, Smile, Users } from "lucide-react";
 import styles from './Stats.module.scss';
 
 // Composant pour un seul compteur animé
 function AnimatedCounter({ value }: { value: number }) {
-  const spring = useSpring(0, { duration: 2500, bounce: 0.1 });
+  
+  // --- CORRECTION MAJEURE ICI ---
+  // useSpring n'utilise pas 'duration', mais 'stiffness' et 'damping'.
+  const spring = useSpring(0, { 
+    stiffness: 100, // Rigidité du ressort
+    damping: 25,   // Amortissement
+    mass: 1         // Masse de l'objet (influence l'inertie)
+  });
+  
+  // Le reste de la logique est correcte
   const displayValue = useTransform(spring, (current) => 
     Math.round(current).toLocaleString('fr-FR')
   );
@@ -24,12 +33,13 @@ function AnimatedCounter({ value }: { value: number }) {
 
   useEffect(() => {
     if (isInView) {
-      spring.set(value);
+      spring.set(value); // Déclenche l'animation de 0 à la valeur cible
     }
   }, [isInView, value, spring]);
 
   return <motion.span ref={ref}>{displayValue}</motion.span>;
 }
+
 
 export default function Stats() {
   const stats = [
@@ -38,7 +48,7 @@ export default function Stats() {
     { id: 3, value: 15, unit: " ans", label: "d'Expérience", icon: <Users /> },
   ];
 
-  // --- 2. TYPER L'OBJET ---
+  // (Typage des variants, inchangé depuis la correction précédente)
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -47,7 +57,6 @@ export default function Stats() {
     },
   };
 
-  // --- 3. TYPER L'OBJET (CELUI DE L'ERREUR) ---
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },

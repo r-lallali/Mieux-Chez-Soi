@@ -16,12 +16,14 @@ const testimonialsData = [
     id: 2,
     name: "Sarah M.",
     location: "Paris (75)",
+    rating: 4.5,
     quote: "Intervention rapide pour une fuite importante. Très professionnels et efficaces. Ils nous ont sauvé notre week-end !"
   },
   {
     id: 3,
     name: "Famille Dubois",
     location: "Gonesse (95)",
+    rating: 5,
     quote: "Nous avons confié notre projet d'extension à Mieux Chez Soi et le résultat est au-delà de nos espérances. Un grand merci à toute l'équipe."
   },
 ];
