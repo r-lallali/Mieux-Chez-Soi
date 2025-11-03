@@ -42,8 +42,8 @@ export default function Header() {
                 <Image
                   src="/images/logo.png" 
                   alt="Mieux chez soi Logo"
-                  width={150} 
-                  height={70} 
+                  width={170} 
+                  height={79} 
                   className={styles.logoImage}
                   priority 
                 />
