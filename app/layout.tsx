@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Services de rénovation, dépannage urgent et chantiers neufs.",
 };
 
-const phoneNumber = "01 23 45 67 89";
+const phoneNumber = "06 03 99 22 75";
 const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
 
 export default function RootLayout({
@@ -38,8 +38,7 @@ export default function RootLayout({
               <a href={phoneHref}>{phoneNumber}</a>
             </p>
             <p className={styles.footerZone}>
-              Intervention rapide dans le Val-d'Oise (95) et en Île-de-France : 
-              Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), etc.
+              Intervention en Île-de-France.
             </p>
           </div>
           <p className={styles.footerCopyright}>

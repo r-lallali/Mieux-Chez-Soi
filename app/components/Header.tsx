@@ -7,7 +7,7 @@ import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Disclosure } from '@headlessui/react';
 import styles from './Header.module.scss'; 
 
-const phoneNumber = "01 23 45 67 89";
+const phoneNumber = "06 03 99 22 75";
 const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
 
 export default function Header() {
@@ -42,11 +42,19 @@ export default function Header() {
                 <Image
                   src="/images/logo.png" 
                   alt="Mieux chez soi Logo"
-                  width={170} 
-                  height={79} 
+                  width={195} 
+                  height={70} 
                   className={styles.logoImage}
                   priority 
                 />
+
+                {/* --- MODIFICATION ICI --- */}
+                {/* J'ai supprimé le 'whileHover' pour garder la couleur rouge */}
+                <motion.span
+                  className={styles.logoText}
+                >
+                  mieux chez soi
+                </motion.span>
               </Link>
 
               {/* Liens Desktop */}
