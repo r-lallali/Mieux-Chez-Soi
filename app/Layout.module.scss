@@ -27,11 +27,54 @@ $bg-color: #f9fafb; // Gris très clair
 
 .footer {
   text-align: center;
-  padding: 1.5rem;
-  background-color: #111827; // Gris très foncé
-  color: #f9fafb;
+  padding: 2.5rem 1rem; 
+  background-color: #111827; 
+  color: #d1d5db; 
   margin-top: 3rem;
+  line-height: 1.6;
+}
+
+.footerContent {
+  @extend .container; 
+  max-width: 800px; 
+  margin-bottom: 1.5rem;
   font-size: 0.9rem;
+
+  p {
+    margin: 0.25rem 0;
+  }
+  
+  strong {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+
+// --- NOUVEAU STYLE POUR LE TÉLÉPHONE DU FOOTER ---
+.footerPhone {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.75rem 0 !important;
+
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.footerZone {
+  font-size: 0.85rem;
+  color: #9ca3af; 
+}
+
+.footerCopyright {
+  font-size: 0.8rem;
+  color: #6b7280; 
+  margin: 0;
 }
 
 // --- Classes utilitaires ---

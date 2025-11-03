@@ -1,8 +1,8 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css"; // Les styles globaux (peuvent être presque vides)
-import styles from './Layout.module.scss'; // Import CSS Module
+import "./globals.css"; 
+import styles from './Layout.module.scss'; 
 
 import Header from './components/Header'
 
@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "Services de rénovation, dépannage urgent et chantiers neufs.",
 };
 
+const phoneNumber = "01 23 45 67 89";
+const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,11 +23,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={inter.className}>
-      <body className={styles.body}> {/* Utilisez le style du module SCSS */}
+      <body className={styles.body}> 
         <Header />
         <main>{children}</main>
-        <footer className={styles.footer}> {/* Style du module SCSS */}
-          © 2025 Mieux Chez Soi. Tous droits réservés.
+        
+        <footer className={styles.footer}>
+          <div className={styles.footerContent}>
+            <p><strong>Mieux Chez Soi</strong></p>
+            <p>
+              Artisans basés à Gonesse (95500)
+            </p>
+            {/* --- AJOUT DU TÉLÉPHONE ICI --- */}
+            <p className={styles.footerPhone}>
+              <a href={phoneHref}>{phoneNumber}</a>
+            </p>
+            <p className={styles.footerZone}>
+              Intervention rapide dans le Val-d'Oise (95) et en Île-de-France : 
+              Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), etc.
+            </p>
+          </div>
+          <p className={styles.footerCopyright}>
+            © 2025 Mieux Chez Soi. Tous droits réservés.
+          </p>
         </footer>
       </body>
     </html>

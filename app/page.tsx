@@ -8,6 +8,7 @@ import Testimonials from "./components/Testimonials";
 import Services from "./components/Services";
 import Realisations from "./components/Realisations"; 
 import ContactFormStepper from "./components/ContactFormStepper";
+import Location from "./components/Location";
 
 import layoutStyles from './Layout.module.scss'; 
 
@@ -152,6 +153,18 @@ export default function HomePage() {
             Suivez les étapes pour nous décrire votre projet. C'est simple et sans engagement.
           </motion.p>
           <ContactFormStepper />
+        </div>
+      </motion.section>
+      <motion.section
+        id="location"
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+      >
+        <div className={layoutStyles.container}>
+          <Location />
         </div>
       </motion.section>
     </div>

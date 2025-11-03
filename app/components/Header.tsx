@@ -1,23 +1,27 @@
 // app/components/Header.tsx
 "use client"; 
 import Link from "next/link";
-import { HardHat, Menu, X } from "lucide-react";
+// --- 1. IMPORTER L'ICÔNE TÉLÉPHONE ---
+import { HardHat, Menu, X, Phone } from "lucide-react";
 import { motion, Variants, AnimatePresence } from "framer-motion"; 
 import { Disclosure } from '@headlessui/react';
 import styles from './Header.module.scss'; 
 
-export default function Header() {
+// --- 2. DÉFINIR LE NUMÉRO ICI ---
+const phoneNumber = "01 23 45 67 89";
+// Format cliquable
+const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
 
+export default function Header() {
+  // ... (variants inchangées)
   const headerVariants: Variants = {
     hidden: { y: -100, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120, damping: 20 } },
   };
-
   const linkVariants: Variants = {
     hover: { scale: 1.05, color: '#2563eb' }, 
     tap: { scale: 0.95 },
   };
-  
   const mobilePanelVariants: Variants = {
     hidden: { opacity: 0, height: 0, y: -20 },
     visible: { opacity: 1, height: 'auto', y: 0, transition: { duration: 0.3, ease: "easeOut" } },
@@ -63,8 +67,19 @@ export default function Header() {
                 <motion.a href="#contact" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                   Contact
                 </motion.a>
+                
+                {/* --- 3. AJOUT DU NUMÉRO EN CLAIR --- */}
+                <motion.a 
+                  href={phoneHref} 
+                  className={styles.phoneLink}
+                  variants={linkVariants} whileHover="hover" whileTap="tap"
+                >
+                  <Phone size={16} />
+                  {phoneNumber}
+                </motion.a>
+
                 <motion.a
-                  href="tel:0123456789"
+                  href={phoneHref}
                   className={styles.urgentButton}
                   whileHover={{ scale: 1.05, backgroundColor: '#b91c1c' }}
                   whileTap={{ scale: 0.95 }}
@@ -110,8 +125,9 @@ export default function Header() {
                 <Disclosure.Button as={Link} href="/#contact" className={styles.mobileNavLink}>
                   Contact
                 </Disclosure.Button>
-                <Disclosure.Button as="a" href="tel:0123456789" className={styles.mobileUrgentButton}>
-                  Urgence 24/7
+                {/* --- 4. AJOUT DU NUMÉRO DANS LE MENU MOBILE --- */}
+                <Disclosure.Button as="a" href={phoneHref} className={styles.mobileUrgentButton}>
+                  {phoneNumber} (Urgence 24/7)
                 </Disclosure.Button>
               </Disclosure.Panel>
             )}
