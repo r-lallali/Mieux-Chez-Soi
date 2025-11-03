@@ -13,12 +13,6 @@ export default function RenovationPage() {
         </header>
 
         <div className={styles.content}>
-          <p>
-            Une rénovation complète peut sembler intimidante, mais avec "Mieux Chez Soi",
-            vous êtes accompagné à chaque étape. Nous gérons l'ensemble de votre projet,
-            de la conception à la livraison.
-          </p>
-
           <h3>Nos prestations de rénovation :</h3>
           <ul>
             <li>Rénovation de cuisines et salles de bain</li>
@@ -27,11 +21,6 @@ export default function RenovationPage() {
             <li>Mise aux normes électriques et plomberie</li>
             <li>Création et modification de cloisons</li>
           </ul>
-
-          <p>
-            Notre expertise nous permet de garantir un travail de qualité,
-            réalisé avec des matériaux durables et dans le respect des délais convenus.
-          </p>
 
           <Link href="/#contact" className={styles.ctaButton}>
             Demander un devis rénovation

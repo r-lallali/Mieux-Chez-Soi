@@ -9,15 +9,10 @@ export default function DepannagePage() {
       <div className={styles.pageContainer}>
         <header className={styles.pageHeader}>
           <h1 className={styles.title}>Urgences & Dépannage</h1>
-          <p className={styles.subtitle}>Intervention rapide 24/7 en Île-de-France.</p>
+          <p className={styles.subtitle}>Intervention rapide en Île-de-France.</p>
         </header>
 
         <div className={styles.content}>
-          <p>
-            Une fuite d'eau ? Une panne électrique ? "Mieux Chez Soi" intervient
-            rapidement à Gonesse et ses alentours pour résoudre vos urgences.
-          </p>
-
           <h3>Nos interventions fréquentes :</h3>
           <ul>
             <li>Recherche et réparation de fuites d'eau</li>

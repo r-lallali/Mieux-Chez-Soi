@@ -13,11 +13,6 @@ export default function ChantiersPage() {
         </header>
 
         <div className={styles.content}>
-          <p>
-            Nous accompagnons également les professionnels et les particuliers dans leurs projets de construction,
-            de l'ossature bois aux bâtiments professionnels.
-          </p>
-
           <h3>Nos compétences en chantier :</h3>
           <ul>
             <li>Construction d'extensions et surélévations</li>
