@@ -1,0 +1,56 @@
+// app/services/ServicePage.module.scss
+@import '../Layout.module.scss';
+
+.pageContainer {
+  @extend .container;
+  max-width: 900px; // Contenu plus centré
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.pageHeader {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.title {
+  @extend .sectionTitle; // Réutilise le style de titre
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
+}
+
+.content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: $text-color;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.ctaButton {
+  @extend .callToAction; // Réutilise le style du bouton du Hero
+  background-color: $primary-color;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+}

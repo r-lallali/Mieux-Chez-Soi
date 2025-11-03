@@ -2,11 +2,16 @@
 "use client"; // Client Component pour les animations
 import { motion, Variants } from "framer-motion";
 import Hero from "./components/Hero";
+// --- NOUVEAUX IMPORTS ---
+import Stats from "./components/Stats";
+import About from "./components/About";
+import Testimonials from "./components/Testimonials";
+// --- FIN NOUVEAUX IMPORTS ---
 import Services from "./components/Services";
-import Realisations from "./components/Realisations"; // <-- 1. IMPORTER
+import Realisations from "./components/Realisations"; 
 import ContactFormStepper from "./components/ContactFormStepper";
 
-import layoutStyles from './Layout.module.scss'; // Pour le container global
+import layoutStyles from './Layout.module.scss'; 
 
 export default function HomePage() {
   const sectionVariants: Variants = {
@@ -18,10 +23,35 @@ export default function HomePage() {
     <div>
       <Hero />
       
+      {/* --- 1. NOUVELLE SECTION STATS --- */}
+      <Stats />
+      
+      {/* --- 2. NOUVELLE SECTION À PROPOS --- */}
+      <motion.section
+        id="about"
+        className={layoutStyles.section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={sectionVariants}
+      >
+        <div className={layoutStyles.container}>
+          <motion.h2
+            className={layoutStyles.sectionTitle}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
+            viewport={{ once: true }}
+          >
+            Votre Artisan de Confiance
+          </motion.h2>
+          <About />
+        </div>
+      </motion.section>
+      
       {/* --- SECTION SERVICES (INCHANGÉE) --- */}
       <motion.section
         id="services"
-        className={layoutStyles.section}
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -39,6 +69,51 @@ export default function HomePage() {
           <Services />
         </div>
       </motion.section>
+
+      {/* --- SECTION RÉALISATIONS (INCHANGÉE) --- */}
+      <motion.section
+        id="realisations"
+        className={layoutStyles.section} // Fond blanc
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }} 
+        variants={sectionVariants}
+      >
+        <div className={layoutStyles.container}>
+          <motion.h2
+            className={layoutStyles.sectionTitle}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
+            viewport={{ once: true }}
+          >
+            Nos Réalisations
+          </motion.h2>
+          <Realisations />
+        </div>
+      </motion.section>
+
+      {/* --- 3. NOUVELLE SECTION TÉMOIGNAGES --- */}
+      <motion.section
+        id="testimonials"
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+      >
+        <div className={layoutStyles.container}>
+          <motion.h2
+            className={layoutStyles.sectionTitle}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
+            viewport={{ once: true }}
+          >
+            Ils nous font confiance
+          </motion.h2>
+          <Testimonials />
+        </div>
+      </motion.section>
+
       {/* --- SECTION CONTACT (INCHANGÉE) --- */}
       <motion.section
         id="contact"
@@ -63,34 +138,12 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.5 } }}
             viewport={{ once: true }}
           >
-            Suivez les étapes pour nous décrire votre projet. C'est simple, rapide et sans engagement.
+            Basés à Gonesse (95), nous intervenons sur Paris, Courbevoie et toute la région.
+            Suivez les étapes pour nous décrire votre projet. C'est simple et sans engagement.
           </motion.p>
           <ContactFormStepper />
         </div>
       </motion.section>
-      {/* --- 2. NOUVELLE SECTION RÉALISATIONS --- */}
-      <motion.section
-        id="realisations"
-        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris pour alterner
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }} // Déclencher un peu plus tôt
-        variants={sectionVariants}
-      >
-        <div className={layoutStyles.container}>
-          <motion.h2
-            className={layoutStyles.sectionTitle}
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
-            viewport={{ once: true }}
-          >
-            Nos Réalisations
-          </motion.h2>
-          <Realisations />
-        </div>
-      </motion.section>
-
-      
     </div>
   );
 }

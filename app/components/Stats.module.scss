@@ -1,0 +1,59 @@
+// app/components/Services.module.scss
+@import '../Layout.module.scss';
+
+// --- NOUVEAU STYLE POUR LE LIEN ---
+.serviceLink {
+  text-decoration: none;
+  color: inherit;
+  display: block; // Assure que le lien prend toute la place
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem; 
+
+  @media (min-width: 768px) { 
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.serviceCard {
+  background-color: white;
+  padding: 2rem; 
+  border-radius: 0.75rem; 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+  text-align: center;
+  transition: all 0.3s ease-out;
+  height: 100%; // Assure que les cartes ont la même hauteur
+}
+
+.iconContainer {
+  // ... (inchangé)
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem; 
+
+  svg { 
+    height: 3rem; 
+    width: 3rem; 
+  }
+}
+
+.icon-0 svg { color: $primary-color; } 
+.icon-1 svg { color: $secondary-color; } 
+.icon-2 svg { color: #10b981; } 
+
+.serviceTitle {
+  // ... (inchangé)
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  color: $text-color; 
+  margin-bottom: 0.5rem; 
+}
+
+.serviceDescription {
+  // ... (inchangé)
+  color: #4b5563; 
+  line-height: 1.6;
+}
