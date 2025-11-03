@@ -77,15 +77,6 @@ export default function Header() {
                   <Phone size={16} />
                   {phoneNumber}
                 </motion.a>
-
-                <motion.a
-                  href={phoneHref}
-                  className={styles.urgentButton}
-                  whileHover={{ scale: 1.05, backgroundColor: '#b91c1c' }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Urgence 24/7
-                </motion.a>
               </div>
 
               {/* Bouton Hamburger (inchangé) */}
@@ -127,7 +118,7 @@ export default function Header() {
                 </Disclosure.Button>
                 {/* --- 4. AJOUT DU NUMÉRO DANS LE MENU MOBILE --- */}
                 <Disclosure.Button as="a" href={phoneHref} className={styles.mobileUrgentButton}>
-                  {phoneNumber} (Urgence 24/7)
+                  {phoneNumber}
                 </Disclosure.Button>
               </Disclosure.Panel>
             )}
