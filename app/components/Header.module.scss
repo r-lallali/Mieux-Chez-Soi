@@ -1,7 +1,6 @@
 // app/components/Header.module.scss
 @import '../Layout.module.scss'; 
 
-// --- Wrapper pour le composant Disclosure ---
 .headerWrapper {
   position: sticky;
   top: 0;
@@ -31,25 +30,21 @@
   display: flex;
   align-items: center;
   gap: 0.5rem; 
-  flex-shrink: 0; // Empêche le logo de se réduire
+  flex-shrink: 0; 
 }
 
-// --- MODIFIÉ : .logoIcon est devenu .logoImage ---
 .logoImage {
-  // Ajuste la hauteur de l'image (ex: 40px)
   height: 2.5rem; 
-  // La largeur est gérée automatiquement par Next/Image
   width: auto; 
-  // S'assure que l'image n'est pas déformée
   object-fit: contain; 
 }
 
 .logoText {
   font-size: 1.5rem; 
   font-weight: 700; 
-  color: $text-color; 
+  // --- MODIFICATION ICI ---
+  color: $secondary-color; // Utilise la variable rouge
   
-  // Cache le texte sur petits écrans si le logo est suffisant
   @media (max-width: 400px) {
     display: none; 
   }
@@ -61,7 +56,6 @@
   align-items: center;
   gap: 0.5rem; 
 
-  // Changé à 1024px pour faire de la place à tous les liens
   @media (min-width: 1024px) { 
     display: flex;
   }
@@ -96,11 +90,10 @@
   border-radius: 0.375rem; 
   font-weight: 600; 
   transition: background-color 0.3s ease; 
-  display: none; // Caché par défaut
+  display: none;
   font-size: 0.95rem; 
   
   @media (min-width: 1024px) {
-    // Reste 'none' car .phoneLink le remplace
     display: none; 
   }
 }

@@ -1,20 +1,16 @@
 // app/components/Header.tsx
 "use client"; 
 import Link from "next/link";
-// --- 1. MODIFIÉ : Importer 'Image' et supprimer 'HardHat' ---
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, Variants, AnimatePresence } from "framer-motion"; 
 import { Disclosure } from '@headlessui/react';
 import styles from './Header.module.scss'; 
 
-// --- 2. DÉFINIR LE NUMÉRO ICI ---
 const phoneNumber = "01 23 45 67 89";
-// Format cliquable
 const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
 
 export default function Header() {
-  // (variants inchangées - mais avec une indentation correcte)
   const headerVariants: Variants = {
     hidden: { y: -100, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120, damping: 20 } },
@@ -40,25 +36,28 @@ export default function Header() {
             animate="visible"
           >
             <nav className={styles.nav}>
+              
               <Link href="/" className={styles.logoLink}>
+                
                 <Image
                   src="/images/logo.png" 
                   alt="Mieux chez soi Logo"
                   width={160} 
                   height={40} 
-                  
                   className={styles.logoImage}
-                  priority
+                  priority 
                 />
+
+                {/* --- MODIFICATION ICI --- */}
+                {/* J'ai supprimé le 'whileHover' pour garder la couleur rouge */}
                 <motion.span
                   className={styles.logoText}
-                  whileHover={{ color: '#2563eb' }}
                 >
-                  Mieux chez soi
+                  mieux chez soi
                 </motion.span>
               </Link>
 
-              {/* Liens Desktop (inchangés) */}
+              {/* Liens Desktop */}
               <div className={styles.navLinks}>
                 <motion.a href="#about" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                   À Propos
@@ -76,7 +75,6 @@ export default function Header() {
                   Contact
                 </motion.a>
                 
-                {/* --- 3. AJOUT DU NUMÉRO EN CLAIR --- */}
                 <motion.a 
                   href={phoneHref} 
                   className={styles.phoneLink}
@@ -85,11 +83,9 @@ export default function Header() {
                   <Phone size={16} />
                   {phoneNumber}
                 </motion.a>
-                
-                {/* (Le bouton Urgence 24/7 est masqué par le SCSS) */}
               </div>
 
-              {/* Bouton Hamburger (inchangé) */}
+              {/* Bouton Hamburger */}
               <Disclosure.Button 
                 className={styles.mobileMenuButton}
                 aria-label="Ouvrir le menu"
@@ -99,7 +95,7 @@ export default function Header() {
             </nav>
           </motion.div>
 
-          {/* Panneau Mobile (inchangé) */}
+          {/* Panneau Mobile */}
           <AnimatePresence>
             {open && (
               <Disclosure.Panel
@@ -126,7 +122,6 @@ export default function Header() {
                 <Disclosure.Button as={Link} href="/#contact" className={styles.mobileNavLink}>
                   Contact
                 </Disclosure.Button>
-                {/* --- 4. AJOUT DU NUMÉRO DANS LE MENU MOBILE --- */}
                 <Disclosure.Button as="a" href={phoneHref} className={styles.mobileUrgentButton}>
                   {phoneNumber}
                 </Disclosure.Button>
