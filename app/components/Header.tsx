@@ -47,14 +47,6 @@ export default function Header() {
                   className={styles.logoImage}
                   priority 
                 />
-
-                {/* --- MODIFICATION ICI --- */}
-                {/* J'ai supprimé le 'whileHover' pour garder la couleur rouge */}
-                <motion.span
-                  className={styles.logoText}
-                >
-                  mieux chez soi
-                </motion.span>
               </Link>
 
               {/* Liens Desktop */}
