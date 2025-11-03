@@ -1,8 +1,9 @@
 // app/components/Header.tsx
 "use client"; 
 import Link from "next/link";
-// --- 1. IMPORTER L'ICÔNE TÉLÉPHONE ---
-import { HardHat, Menu, X, Phone } from "lucide-react";
+// --- 1. MODIFIÉ : Importer 'Image' et supprimer 'HardHat' ---
+import Image from "next/image";
+import { Menu, X, Phone } from "lucide-react";
 import { motion, Variants, AnimatePresence } from "framer-motion"; 
 import { Disclosure } from '@headlessui/react';
 import styles from './Header.module.scss'; 
@@ -13,7 +14,7 @@ const phoneNumber = "01 23 45 67 89";
 const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
 
 export default function Header() {
-  // ... (variants inchangées)
+  // (variants inchangées - mais avec une indentation correcte)
   const headerVariants: Variants = {
     hidden: { y: -100, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120, damping: 20 } },
@@ -39,9 +40,16 @@ export default function Header() {
             animate="visible"
           >
             <nav className={styles.nav}>
-              {/* Logo (inchangé) */}
               <Link href="/" className={styles.logoLink}>
-                <HardHat className={styles.logoIcon} />
+                <Image
+                  src="/images/logo.png" 
+                  alt="Mieux chez soi Logo"
+                  width={160} 
+                  height={40} 
+                  
+                  className={styles.logoImage}
+                  priority
+                />
                 <motion.span
                   className={styles.logoText}
                   whileHover={{ color: '#2563eb' }}
@@ -50,7 +58,7 @@ export default function Header() {
                 </motion.span>
               </Link>
 
-              {/* Liens Desktop (Modifiés) */}
+              {/* Liens Desktop (inchangés) */}
               <div className={styles.navLinks}>
                 <motion.a href="#about" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                   À Propos
@@ -77,6 +85,8 @@ export default function Header() {
                   <Phone size={16} />
                   {phoneNumber}
                 </motion.a>
+                
+                {/* (Le bouton Urgence 24/7 est masqué par le SCSS) */}
               </div>
 
               {/* Bouton Hamburger (inchangé) */}
@@ -89,7 +99,7 @@ export default function Header() {
             </nav>
           </motion.div>
 
-          {/* Panneau Mobile (Modifié) */}
+          {/* Panneau Mobile (inchangé) */}
           <AnimatePresence>
             {open && (
               <Disclosure.Panel

@@ -1,22 +1,24 @@
 // app/components/Header.module.scss
 @import '../Layout.module.scss'; 
 
-// ... (styles .headerWrapper, .header, .nav, .logoLink, .logoIcon, .logoText inchangés) ...
+// --- Wrapper pour le composant Disclosure ---
 .headerWrapper {
   position: sticky;
   top: 0;
   z-index: 50;
   background-color: white; 
 }
+
 .header {
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: 4rem; 
+  height: 4rem; // 64px
   display: flex; 
   align-items: center;
   position: relative; 
   z-index: 50; 
 }
+
 .nav {
   @extend .container; 
   display: flex;
@@ -24,43 +26,57 @@
   align-items: center;
   height: 100%; 
 }
+
 .logoLink {
   display: flex;
   align-items: center;
   gap: 0.5rem; 
+  flex-shrink: 0; // Empêche le logo de se réduire
 }
-.logoIcon {
-  height: 2rem; 
-  width: 2rem; 
-  color: $primary-color; 
+
+// --- MODIFIÉ : .logoIcon est devenu .logoImage ---
+.logoImage {
+  // Ajuste la hauteur de l'image (ex: 40px)
+  height: 2.5rem; 
+  // La largeur est gérée automatiquement par Next/Image
+  width: auto; 
+  // S'assure que l'image n'est pas déformée
+  object-fit: contain; 
 }
+
 .logoText {
   font-size: 1.5rem; 
   font-weight: 700; 
   color: $text-color; 
+  
+  // Cache le texte sur petits écrans si le logo est suffisant
+  @media (max-width: 400px) {
+    display: none; 
+  }
 }
-
 
 // --- Liens Desktop ---
 .navLinks {
-  display: none; // Caché par défaut
+  display: none; 
   align-items: center;
-  gap: 0.5rem; // --- Réduction du gap ---
+  gap: 0.5rem; 
 
-  // --- MODIFIÉ : Point de rupture augmenté ---
-  @media (min-width: 1024px) { // (Anciennement 900px)
+  // Changé à 1024px pour faire de la place à tous les liens
+  @media (min-width: 1024px) { 
     display: flex;
   }
 }
+
 .navLink {
   color: #4b5563; 
   padding: 0.5rem 0.75rem;
   border-radius: 0.375rem; 
   font-weight: 500; 
-  font-size: 0.95rem; // --- Réduction légère de la police ---
+  font-size: 0.95rem; 
 }
+
 .phoneLink {
-  @extend .navLink; // Hérite du style de base
+  @extend .navLink;
   color: $text-color;
   font-weight: 600;
   display: flex;
@@ -68,7 +84,6 @@
   gap: 0.35rem;
 
   svg {
-    // Réduit l'icône
     width: 1rem;
     height: 1rem;
   }
@@ -81,18 +96,18 @@
   border-radius: 0.375rem; 
   font-weight: 600; 
   transition: background-color 0.3s ease; 
-  display: none;
+  display: none; // Caché par défaut
   font-size: 0.95rem; 
   
   @media (min-width: 1024px) {
-    display: inline-flex; 
+    // Reste 'none' car .phoneLink le remplace
+    display: none; 
   }
 }
 
 
 // --- STYLES MOBILES ---
 .mobileMenuButton {
-  // ... (inchangé)
   background: none;
   border: none;
   cursor: pointer;
@@ -103,12 +118,11 @@
   justify-content: center;
   z-index: 51; 
   
-  @media (min-width: 1024px) { // --- MODIFIÉ : Point de rupture augmenté ---
+  @media (min-width: 1024px) {
     display: none;
   }
 }
 .mobilePanel {
-  // ... (inchangé)
   position: absolute; 
   left: 0;
   right: 0;
@@ -126,7 +140,6 @@
   overflow: hidden; 
 }
 .mobileNavLink {
-  // ... (inchangé)
   font-size: 1.1rem; 
   font-weight: 600;
   color: $text-color;
@@ -141,7 +154,6 @@
   }
 }
 .mobileUrgentButton {
-  // ... (inchangé)
   background-color: $secondary-color; 
   color: white;
   padding: 0.75rem 1.5rem; 
