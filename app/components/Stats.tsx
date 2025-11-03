@@ -1,13 +1,13 @@
 // app/components/Stats.tsx
 "use client";
-// --- 1. AJOUTER 'useEffect' ---
-import { useRef, useEffect } from "react";
+// --- 1. MODIFIÉ : 'useRef' n'est plus nécessaire ---
+import { useEffect } from "react";
 import { 
   motion, 
   useSpring, 
   useTransform, 
-  useInView,
-  Variants // <-- 2. AJOUTER 'Variants'
+  // --- 2. MODIFIÉ : 'useInView' et 'useRef' sont supprimés des imports ---
+  Variants 
 } from "framer-motion";
 import { Briefcase, Smile, Users } from "lucide-react";
 import styles from './Stats.module.scss';
@@ -15,8 +15,6 @@ import styles from './Stats.module.scss';
 // Composant pour un seul compteur animé
 function AnimatedCounter({ value }: { value: number }) {
   
-  // --- 3. CORRECTION DU BUG D'ANIMATION ---
-  // useSpring n'utilise pas 'duration', mais 'stiffness' et 'damping'.
   const spring = useSpring(0, { 
     stiffness: 100, // Rigidité
     damping: 25,   // Amortissement
@@ -27,16 +25,18 @@ function AnimatedCounter({ value }: { value: number }) {
     Math.round(current).toLocaleString('fr-FR')
   );
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // --- 3. MODIFIÉ : Suppression de useInView et ref ---
+  // const ref = useRef(null);
+  // const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // --- 4. MODIFIÉ : Le useEffect se déclenche au montage (au chargement) ---
   useEffect(() => {
-    if (isInView) {
-      spring.set(value); // Déclenche l'animation
-    }
-  }, [isInView, value, spring]);
+    // La condition 'if (isInView)' est supprimée
+    spring.set(value); // Déclenche l'animation
+  }, [value, spring]); // La dépendance 'isInView' est supprimée
 
-  return <motion.span ref={ref}>{displayValue}</motion.span>;
+  // --- 5. MODIFIÉ : 'ref' est supprimé du span ---
+  return <motion.span>{displayValue}</motion.span>;
 }
 
 export default function Stats() {
@@ -46,7 +46,6 @@ export default function Stats() {
     { id: 3, value: 10, unit: " ans", label: "d'Expérience", icon: <Users /> },
   ];
 
-  // --- 4. AJOUTER LE TYPAGE ---
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -55,20 +54,18 @@ export default function Stats() {
     },
   };
 
-  // --- 5. AJOUTER LE TYPAGE ---
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },
   };
 
   return (
-    // --- 6. MODIFIÉ : Utilise .statsGrid au lieu de .statsContainer ---
+    // --- 6. MODIFIÉ : 'whileInView' devient 'animate' ---
     <motion.div 
       className={styles.statsGrid}
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
+      animate="visible"
     >
       {stats.map((stat) => (
         <motion.div key={stat.id} className={styles.statItem} variants={itemVariants}>
