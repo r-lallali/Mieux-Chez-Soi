@@ -1,12 +1,11 @@
 // app/components/Stats.tsx
 "use client";
-// --- 1. MODIFIÉ : 'useRef' n'est plus nécessaire ---
+
 import { useEffect } from "react";
 import { 
   motion, 
   useSpring, 
   useTransform, 
-  // --- 2. MODIFIÉ : 'useInView' et 'useRef' sont supprimés des imports ---
   Variants 
 } from "framer-motion";
 import { Briefcase, Smile, Users } from "lucide-react";
@@ -24,18 +23,9 @@ function AnimatedCounter({ value }: { value: number }) {
   const displayValue = useTransform(spring, (current) => 
     Math.round(current).toLocaleString('fr-FR')
   );
-
-  // --- 3. MODIFIÉ : Suppression de useInView et ref ---
-  // const ref = useRef(null);
-  // const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  // --- 4. MODIFIÉ : Le useEffect se déclenche au montage (au chargement) ---
   useEffect(() => {
-    // La condition 'if (isInView)' est supprimée
-    spring.set(value); // Déclenche l'animation
-  }, [value, spring]); // La dépendance 'isInView' est supprimée
-
-  // --- 5. MODIFIÉ : 'ref' est supprimé du span ---
+    spring.set(value);
+  }, [value, spring]);
   return <motion.span>{displayValue}</motion.span>;
 }
 
@@ -60,7 +50,6 @@ export default function Stats() {
   };
 
   return (
-    // --- 6. MODIFIÉ : 'whileInView' devient 'animate' ---
     <motion.div 
       className={styles.statsGrid}
       variants={containerVariants}
