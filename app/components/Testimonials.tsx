@@ -9,7 +9,7 @@ const testimonialsData = [
     id: 1,
     name: "David L.",
     location: "Courbevoie (92)",
-    rating: 5, 
+    rating: 4, 
     quote: "Travail impeccable pour la rénovation de notre salle de bain. Artisans sérieux, à l'écoute et qui respectent les délais. Je recommande !"
   },
   {
