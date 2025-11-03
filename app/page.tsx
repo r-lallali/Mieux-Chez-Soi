@@ -149,8 +149,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.5 } }}
             viewport={{ once: true }}
           >
-            Basés à Gonesse (95), nous intervenons sur Paris, Courbevoie et toute la région.
-            Suivez les étapes pour nous décrire votre projet. C'est simple et sans engagement.
+            Décrivez nous votre projet.
           </motion.p>
           <ContactFormStepper />
         </div>
