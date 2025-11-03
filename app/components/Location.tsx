@@ -8,14 +8,13 @@ import layoutStyles from '../Layout.module.scss'; // Pour le style de titre
 
 // --- (Vos informations de contact) ---
 const contactDetails = {
-  address: "1 Rue de la Paix, 95500 Gonesse", // Mettez votre vraie adresse ici
+  address: "8 Rue St Nicolas, 95500 Gonesse", // Mettez votre vraie adresse ici
   phone: "01 23 45 67 89",
   email: "contact@mieux-chezsoi.fr"
 };
 
 // URL d'intégration de Google Maps
-const mapEmbedUrl = "http://googleusercontent.com/maps.google.com/7";
-
+const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41893.99535037887!2d2.448015712311494!3d48.98442622080371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66add3bbe0a1b%3A0xa9a798331d95e84e!2s8%20Rue%20Saint-Nicolas%2C%2095500%20Gonesse!5e0!3m2!1sfr!2sfr!4v1762135101946!5m2!1sfr!2sfr"
 export default function Location() {
   
   // --- 2. MODIFICATION : Ajouter le type 'Variants' ---
