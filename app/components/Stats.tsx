@@ -15,8 +15,8 @@ import styles from './Stats.module.scss';
 function AnimatedCounter({ value }: { value: number }) {
   
   const spring = useSpring(0, { 
-    stiffness: 100, // Rigidité
-    damping: 25,   // Amortissement
+    stiffness: 60, // Rigidité
+    damping: 40,   // Amortissement
     mass: 1         
   });
   
