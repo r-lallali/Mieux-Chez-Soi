@@ -28,7 +28,7 @@
   border-left: 4px solid $primary-color;
   padding-left: 0.75rem;
 
-  // --- NOUVEAU : Centrage du titre sur mobile ---
+  // Centre le titre sur mobile
   @media (max-width: 899px) {
     text-align: center;
     border-left: none;
@@ -45,14 +45,19 @@
     flex-direction: column;
     gap: 1rem;
 
-    // --- NOUVEAU : Centrage de la liste sur mobile ---
+    // --- MODIFICATION ICI ---
+    // Au lieu de centrer les 'li' (ce qui crée la cascade)
+    // Nous centrons le bloc 'ul' lui-même sur la page mobile.
     @media (max-width: 899px) {
-      // Centre les <li> horizontalement
-      align-items: center; 
+      // align-items: center; // <-- SUPPRIMER CECI
+      width: fit-content;    // <-- AJOUTER : L'UL prend la largeur de son contenu
+      margin-left: auto;    // <-- AJOUTER : Centre le bloc
+      margin-right: auto;   // <-- AJOUTER : Centre le bloc
     }
   }
 
   li {
+    // Les 'li' restent alignés à gauche par défaut
     display: flex;
     align-items: center;
     gap: 1rem;
