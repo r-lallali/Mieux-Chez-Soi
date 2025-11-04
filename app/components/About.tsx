@@ -5,10 +5,9 @@ import { ShieldCheck, CalendarClock, Wrench, Package } from "lucide-react";
 import styles from './About.module.scss';
 
 const commitments = [
-  { id: 1, text: "Garantie", icon: <ShieldCheck /> },
-  { id: 2, text: "Respect des Délais", icon: <CalendarClock /> },
-  { id: 3, text: "Matériaux de Qualité", icon: <Wrench /> },
-  { id: 4, text: "Devis Gratuit & Détaillé", icon: <Package /> },
+  { id: 1, text: "Respect des Délais", icon: <CalendarClock /> },
+  { id: 2, text: "Matériaux de Qualité", icon: <Wrench /> },
+  { id: 3, text: "Devis Gratuit & Détaillé", icon: <Package /> },
 ];
 
 export default function About() {
@@ -36,7 +35,7 @@ export default function About() {
       >
         <h3 className={styles.subTitle}>Qui sommes-nous ?</h3>
         <p>
-          Passionnés par la rénovation et basés à Gonesse (95), Mieux Chez Soi est une petite équipe de 5 salariés prête à intervenir pour tous vos travaux. 
+          Passionnés par la rénovation et basés à Gonesse (95), Mieux Chez Soi est une équipe de 5 salariés prête à intervenir pour tous vos travaux. 
           Avec plus de 10 ans d'expérience, nous mettons notre savoir-faire au service de vos projets, 
           du simple dépannage à la rénovation complète de votre habitat et ce dans toute l'Île-de-France.
         </p>
