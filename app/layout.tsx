@@ -29,14 +29,6 @@ export default function RootLayout({
         
         <footer className={styles.footer}>
           <div className={styles.footerContent}>
-            <p><strong>Mieux Chez Soi</strong></p>
-            <p>
-              Artisans basés à Gonesse (95500)
-            </p>
-            {/* --- AJOUT DU TÉLÉPHONE ICI --- */}
-            <p className={styles.footerPhone}>
-              <a href={phoneHref}>{phoneNumber}</a>
-            </p>
             <p className={styles.footerZone}>
               Intervention en Île-de-France.
             </p>
