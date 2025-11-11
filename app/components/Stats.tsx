@@ -31,9 +31,9 @@ function AnimatedCounter({ value }: { value: number }) {
 
 export default function Stats() {
   const stats = [
-    { id: 1, value: 400, unit: "+", label: "Projets Réalisés", icon: <Briefcase /> },
-    { id: 2, value: 90, unit: "%", label: "Clients Satisfaits", icon: <Smile /> },
-    { id: 3, value: 10, unit: " ans", label: "d'Expérience", icon: <Users /> },
+    { id: 1, value: 300, unit: "+", label: "Projets Réalisés", icon: <Briefcase /> },
+    { id: 2, value: 95, unit: "%", label: "Clients Satisfaits", icon: <Smile /> },
+    { id: 3, value: 6, unit: " ans", label: "d'Expérience", icon: <Users /> },
   ];
 
   const containerVariants: Variants = {
