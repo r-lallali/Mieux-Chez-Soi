@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Services de rénovation, dépannage urgent et chantiers neufs.",
 };
 
-const phoneNumber = "06 03 99 22 75";
+const phoneNumber = "06 51 24 52 84";
 const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
 
 export default function RootLayout({

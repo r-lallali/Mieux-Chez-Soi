@@ -9,7 +9,7 @@ import layoutStyles from '../Layout.module.scss'; // Pour le style de titre
 // --- (Vos informations de contact) ---
 const contactDetails = {
   address: "8 Rue St Nicolas, 95500 Gonesse", // Mettez votre vraie adresse ici
-  phone: "01 23 45 67 89",
+  phone: "06 51 24 52 84",
   email: "contact@mieux-chezsoi.fr"
 };
 
