@@ -37,7 +37,7 @@ export default function About() {
         <h3 className={styles.subTitle}>Qui sommes-nous ?</h3>
         <p>
           Passionnés par la rénovation et basés à Gonesse (95), Mieux Chez Soi est une équipe jeune et dynamique de 5 salariés prête à intervenir pour tous vos travaux. 
-          Avec plus de 10 ans d'expérience, nous mettons notre savoir-faire au service de vos projets, 
+          Avec plus de 6 ans d'expérience, nous mettons notre savoir-faire au service de vos projets, 
           du simple dépannage à la rénovation complète de votre habitat et ce dans toute l'Île-de-France.
         </p>
       </motion.div>
