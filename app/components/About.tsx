@@ -8,7 +8,7 @@ const commitments = [
   { id: 1, text: "Respect des Délais", icon: <CalendarClock /> },
   { id: 2, text: "Matériaux de Qualité", icon: <Wrench /> },
   { id: 3, text: "Devis Gratuit & Détaillé", icon: <Package /> },
-  { id: 4, text: "Garantie Décennale", icon: <Package /> }
+  { id: 4, text: "Garantie Décennale", icon: <ShieldCheck /> }
 ];
 
 export default function About() {
