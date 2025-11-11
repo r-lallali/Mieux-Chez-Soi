@@ -22,7 +22,7 @@ const servicesData = [
   {
     icon: <Home />,
     title: "Chantiers",
-    description: "Construction de bâtiments professionnels, du plan à la livraison clé en main.",
+    description: "Construction de bâtiments professionnels, extensions, tout corps de travaux intérieurs.",
     href: "/services/chantiers"
   },
 ];
