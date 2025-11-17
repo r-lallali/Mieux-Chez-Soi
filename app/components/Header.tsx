@@ -65,11 +65,11 @@ export default function Header() {
                 <motion.a href="#testimonials" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                   Avis
                 </motion.a>
-                <motion.a href="#location" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
-                  Nous trouver
-                </motion.a>
                 <motion.a href="#contact" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                   Contact
+                </motion.a>
+                <motion.a href="#location" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+                  Nous trouver
                 </motion.a>
                 
                 <motion.a 
@@ -114,11 +114,11 @@ export default function Header() {
                 <Disclosure.Button as={Link} href="/#testimonials" className={styles.mobileNavLink}>
                   Avis Clients
                 </Disclosure.Button>
-                <Disclosure.Button as={Link} href="/#location" className={styles.mobileNavLink}>
-                  Nous trouver
-                </Disclosure.Button>
                 <Disclosure.Button as={Link} href="/#contact" className={styles.mobileNavLink}>
                   Contact
+                </Disclosure.Button>
+                <Disclosure.Button as={Link} href="/#location" className={styles.mobileNavLink}>
+                  Nous trouver
                 </Disclosure.Button>
                 <Disclosure.Button as="a" href={phoneHref} className={styles.mobileUrgentButton}>
                   {phoneNumber}
