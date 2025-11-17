@@ -1,3 +1,4 @@
+// app/components/Header.tsx
 "use client"; 
 import Link from "next/link";
 import Image from "next/image";
@@ -53,24 +54,36 @@ export default function Header() {
                 </motion.span>
               </Link>
               <div className={styles.navLinks}>
-                <motion.a href="#about" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
-                  À Propos
-                </motion.a>
-                <motion.a href="#services" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
-                  Nos Services
-                </motion.a>
-                <motion.a href="#realisations" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
-                  Réalisations
-                </motion.a>
-                <motion.a href="#testimonials" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
-                  Avis
-                </motion.a>
-                <motion.a href="#contact" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
-                  Contact
-                </motion.a>
-                <motion.a href="#location" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
-                  Nous trouver
-                </motion.a>
+                <Link href="/#about" passHref>
+                  <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+                    À Propos
+                  </motion.a>
+                </Link>
+                <Link href="/#services" passHref>
+                  <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+                    Nos Services
+                  </motion.a>
+                </Link>
+                <Link href="/#realisations" passHref>
+                  <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+                    Réalisations
+                  </motion.a>
+                </Link>
+                <Link href="/#testimonials" passHref>
+                  <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+                    Avis
+                  </motion.a>
+                </Link>
+                <Link href="/#contact" passHref>
+                  <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+                    Contact
+                  </motion.a>
+                </Link>
+                <Link href="/#location" passHref>
+                  <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+                    Nous trouver
+                  </motion.a>
+                </Link>
                 
                 <motion.a 
                   href={phoneHref} 
@@ -82,7 +95,6 @@ export default function Header() {
                 </motion.a>
               </div>
 
-              {/* Bouton Hamburger */}
               <Disclosure.Button 
                 className={styles.mobileMenuButton}
                 aria-label="Ouvrir le menu"
@@ -91,6 +103,7 @@ export default function Header() {
               </Disclosure.Button>
             </nav>
           </motion.div>
+
           <AnimatePresence>
             {open && (
               <Disclosure.Panel
