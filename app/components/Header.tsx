@@ -1,4 +1,3 @@
-// app/components/Header.tsx
 "use client"; 
 import Link from "next/link";
 import Image from "next/image";
@@ -47,17 +46,12 @@ export default function Header() {
                   className={styles.logoImage}
                   priority 
                 />
-
-                {/* --- MODIFICATION ICI --- */}
-                {/* J'ai supprimé le 'whileHover' pour garder la couleur rouge */}
                 <motion.span
                   className={styles.logoText}
                 >
                   mieux chez soi
                 </motion.span>
               </Link>
-
-              {/* Liens Desktop */}
               <div className={styles.navLinks}>
                 <motion.a href="#about" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                   À Propos
@@ -70,6 +64,9 @@ export default function Header() {
                 </motion.a>
                 <motion.a href="#testimonials" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                   Avis
+                </motion.a>
+                <motion.a href="#location" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
+                  Nous trouver
                 </motion.a>
                 <motion.a href="#contact" className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                   Contact
@@ -94,8 +91,6 @@ export default function Header() {
               </Disclosure.Button>
             </nav>
           </motion.div>
-
-          {/* Panneau Mobile */}
           <AnimatePresence>
             {open && (
               <Disclosure.Panel
@@ -118,6 +113,9 @@ export default function Header() {
                 </Disclosure.Button>
                 <Disclosure.Button as={Link} href="/#testimonials" className={styles.mobileNavLink}>
                   Avis Clients
+                </Disclosure.Button>
+                <Disclosure.Button as={Link} href="/#location" className={styles.mobileNavLink}>
+                  Nous trouver
                 </Disclosure.Button>
                 <Disclosure.Button as={Link} href="/#contact" className={styles.mobileNavLink}>
                   Contact
