@@ -1,13 +1,8 @@
 // app/components/Realisations.tsx
 "use client";
-import { useRef } from "react";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from './Realisations.module.scss';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const realisationsData = [
   {
@@ -40,62 +35,35 @@ const IMAGE_WIDTH = 1000;
 const IMAGE_HEIGHT = 750;
 
 export default function Realisations() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    const cards = gsap.utils.toArray<HTMLElement>(".gsap-real-card");
-    
-    cards.forEach((card, i) => {
-      // Animation de la carte elle-même (montée + fade)
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: "top 90%", // Se déclenche quand la carte entre un peu dans l'écran
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        delay: i * 0.15 // Délai manuel pour le stagger si on ne veut pas tout déclencher d'un coup
-      });
-
-      // Animation de l'image à l'intérieur (Effet Parallax/Zoom subtil)
-      const image = card.querySelector("img");
-      if (image) {
-        gsap.from(image, {
-          scrollTrigger: {
-            trigger: card,
-            start: "top 100%",
-          },
-          scale: 1.3, // L'image commence zoomée
-          duration: 1.5,
-          ease: "power2.out" // Et dézoome doucement
-        });
-      }
-    });
-
-  }, { scope: containerRef });
-
-  // Animation Hover simplifiée
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    gsap.to(e.currentTarget, { y: -10, duration: 0.3, ease: "power2.out" });
-    // On cible l'image à l'intérieur pour un petit zoom supplémentaire
-    gsap.to(e.currentTarget.querySelector("img"), { scale: 1.1, duration: 0.5 });
+  
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    gsap.to(e.currentTarget, { y: 0, duration: 0.3, ease: "power2.out" });
-    gsap.to(e.currentTarget.querySelector("img"), { scale: 1, duration: 0.5 });
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
-    <div className={styles.realisationsGrid} ref={containerRef}>
+    <motion.div
+      className={styles.realisationsGrid}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
       {realisationsData.map((item) => (
-        <div
+        <motion.div
           key={item.id}
-          className={`${styles.realisationCard} gsap-real-card`}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className={styles.realisationCard}
+          variants={itemVariants}
+          whileHover={{ 
+            scale: 1.03, 
+            boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)' 
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
           <div className={styles.imageContainer}>
             <Image
@@ -111,8 +79,8 @@ export default function Realisations() {
             <h3 className={styles.realisationTitle}>{item.title}</h3>
             <p className={styles.realisationDescription}>{item.description}</p>
           </div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }
