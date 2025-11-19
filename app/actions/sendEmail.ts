@@ -35,7 +35,7 @@ export async function sendEmail(
 
       from: 'Nouveau devis MCS<no-reply@devis.mieux-chezsoi.fr>',
 
-      to: ['lallaliralys@gmail.com'], 
+      to: ['lallaliralys@gmail.com','mieuxchezsoirenove@gmail.com','contact@mieux-chezsoi.fr'], 
       
       subject: `Nouveau devis de ${name}`,
 
