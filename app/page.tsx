@@ -1,8 +1,8 @@
-// app/page.tsx
-"use client"; // Client Component pour les animations
+
+"use client"; 
 import { motion, Variants } from "framer-motion";
 import Hero from "./components/Hero";
-import Stats from "./components/Stats"; // (Import inchangé)
+import Stats from "./components/Stats"; 
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
 import Services from "./components/Services";
@@ -22,11 +22,11 @@ export default function HomePage() {
     <div>
       <Hero />
       
-      {/* --- MODIFICATION DE LA SECTION STATS --- */}
-      {/* Nous la mettons dans une vraie <section> pour un layout propre */}
+      {}
+      {}
       <motion.section
         id="stats"
-        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -37,7 +37,7 @@ export default function HomePage() {
         </div>
       </motion.section>
       
-      {/* --- SECTION À PROPOS --- */}
+      {}
       <motion.section
         id="about"
         className={layoutStyles.section}
@@ -59,10 +59,10 @@ export default function HomePage() {
         </div>
       </motion.section>
       
-      {/* --- SECTION SERVICES --- */}
+      {}
       <motion.section
         id="services"
-        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -81,10 +81,10 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* --- SECTION RÉALISATIONS --- */}
+      {}
       <motion.section
         id="realisations"
-        className={layoutStyles.section} // Fond blanc
+        className={layoutStyles.section} 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }} 
@@ -103,10 +103,10 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* --- SECTION TÉMOIGNAGES --- */}
+      {}
       <motion.section
         id="testimonials"
-        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -125,10 +125,10 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* --- SECTION CONTACT --- */}
+      {}
       <motion.section
         id="contact"
-        className={layoutStyles.section} // Fond blanc
+        className={layoutStyles.section} 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -156,7 +156,7 @@ export default function HomePage() {
       </motion.section>
       <motion.section
         id="location"
-        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} // Fond gris
+        className={`${layoutStyles.section} ${layoutStyles.sectionBgGray}`} 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}

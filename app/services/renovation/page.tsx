@@ -1,4 +1,4 @@
-// app/services/renovation/page.tsx
+
 import Link from 'next/link';
 import styles from '../ServicePage.module.scss';
 import layoutStyles from '../../Layout.module.scss';

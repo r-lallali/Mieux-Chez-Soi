@@ -1,4 +1,4 @@
-// app/components/About.tsx
+
 "use client";
 import { motion, Variants } from "framer-motion";
 import { ShieldCheck, CalendarClock, Wrench, Package } from "lucide-react";
@@ -14,9 +14,9 @@ const commitments = [
 export default function About() {
   const listVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { staggerChildren: 0.2 } 
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
     },
   };
 
@@ -27,7 +27,7 @@ export default function About() {
 
   return (
     <div className={styles.aboutGrid}>
-      <motion.div 
+      <motion.div
         className={styles.aboutText}
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -36,8 +36,8 @@ export default function About() {
       >
         <h3 className={styles.subTitle}>Qui sommes-nous ?</h3>
         <p>
-          Passionnés par la rénovation et basés à Gonesse (95), Mieux Chez Soi est une équipe jeune et dynamique de 5 salariés prête à intervenir pour tous vos travaux. 
-          Avec plus de 6 ans d'expérience, nous mettons notre savoir-faire au service de vos projets, 
+          Passionnés par la rénovation et basés à Gonesse dans le 95, Mieux Chez Soi est une équipe jeune et dynamique de 5 salariés prête à intervenir pour tous vos travaux.
+          Avec plus de 6 ans d'expérience, nous mettons notre savoir-faire au service de vos projets,
           du simple dépannage à la rénovation complète de votre habitat et ce dans toute l'Île-de-France.
         </p>
       </motion.div>

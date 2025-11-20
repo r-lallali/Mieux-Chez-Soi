@@ -1,19 +1,19 @@
-// app/components/ContactForm.tsx
-"use client"; // <-- Important pour l'interactivité
+
+"use client"; 
 
 import { useFormState, useFormStatus } from "react-dom";
 import { sendEmail, type FormState } from "../actions/sendEmail";
 import { useEffect, useRef } from "react";
 
-// État initial du formulaire
+
 const initialState: FormState = {
   success: false,
   message: "",
 };
 
-// Composant pour le bouton "Envoyer" qui gère l'état "pending"
+
 function SubmitButton() {
-  const { pending } = useFormStatus(); // Hook pour savoir si le formulaire est en cours d'envoi
+  const { pending } = useFormStatus(); 
 
   return (
     <button
@@ -27,11 +27,11 @@ function SubmitButton() {
 }
 
 export default function ContactForm() {
-  // `useFormState` gère l'état de la réponse de la Server Action
+  
   const [state, formAction] = useFormState(sendEmail, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Réinitialiser le formulaire après un succès
+  
   useEffect(() => {
     if (state.success) {
       formRef.current?.reset();
@@ -40,7 +40,7 @@ export default function ContactForm() {
 
   return (
     <form ref={formRef} action={formAction} className="space-y-4">
-      {/* Affichage des messages de succès ou d'erreur */}
+      {}
       {!state.success && state.message && (
         <div className="text-red-600 p-3 bg-red-100 rounded-md">
           {state.message}

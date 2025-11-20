@@ -1,11 +1,11 @@
-// app/components/Services.tsx
+
 "use client";
 import { Wrench, Zap, Home } from "lucide-react";
 import { motion, Variants } from "framer-motion"; 
-import Link from 'next/link'; // <-- 1. IMPORTER LINK
+import Link from 'next/link'; 
 import styles from './Services.module.scss'; 
 
-// --- 2. AJOUTER LES LIENS (href) ---
+
 const servicesData = [
   {
     icon: <Wrench />,
@@ -52,7 +52,7 @@ export default function Services() {
       viewport={{ once: true, amount: 0.5 }} 
     >
       {servicesData.map((service, index) => (
-        // --- 3. ENVELOPPER LA CARTE DANS UN LIEN ---
+        
         <Link href={service.href} key={service.title} className={styles.serviceLink}>
           <motion.div
             className={styles.serviceCard}

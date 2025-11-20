@@ -1,4 +1,4 @@
-// app/components/Testimonials.tsx
+
 "use client";
 import { motion, Variants } from "framer-motion";
 import { Star } from "lucide-react";
@@ -51,16 +51,13 @@ export default function Testimonials() {
       viewport={{ once: true, amount: 0.3 }}
     >
       {testimonialsData
-        // 1. Filtre pour ne garder que les bons avis
+        
         .filter(item => item.rating >= 4) 
         .map((item) => (
           <motion.div key={item.id} className={styles.testimonialCard} variants={itemVariants}>
             <div className={styles.rating}>
               
-              {/* --- CORRECTION DE L'ERREUR ICI --- 
-                  On s'assure que la note est un nombre positif ou nul
-                  avant de créer le tableau d'étoiles.
-              */}
+              {}
               {Array(Math.max(0, item.rating || 0)).fill(0).map((_, i) => (
                 <Star key={i} className={styles.starIcon} />
               ))}

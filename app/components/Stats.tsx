@@ -1,4 +1,4 @@
-// app/components/Stats.tsx
+
 "use client";
 
 import { useEffect } from "react";
@@ -11,12 +11,12 @@ import {
 import { Briefcase, Smile, Users } from "lucide-react";
 import styles from './Stats.module.scss';
 
-// Composant pour un seul compteur animé
+
 function AnimatedCounter({ value }: { value: number }) {
   
   const spring = useSpring(0, { 
-    stiffness: 60, // Rigidité
-    damping: 40,   // Amortissement
+    stiffness: 60, 
+    damping: 40,   
     mass: 1         
   });
   

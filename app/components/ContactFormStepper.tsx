@@ -1,4 +1,4 @@
-// app/components/ContactFormStepper.tsx
+
 "use client";
 
 import { useState, useEffect, useRef, ChangeEvent, useActionState } from "react";
@@ -6,11 +6,11 @@ import { useFormStatus } from "react-dom";
 import { sendEmail, type FormState } from "../actions/sendEmail";
 import { User, Mail, CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { step1Schema } from "../lib/schemas"; // <-- NOUVEL IMPORT
+import { step1Schema } from "../lib/schemas"; 
 
 import styles from './ContactFormStepper.module.scss';
 
-// ... (SubmitButton reste inchangé)
+
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
@@ -43,7 +43,7 @@ export default function ContactFormStepper() {
     message: "",
   });
 
-  // --- NOUVEAU : État pour les erreurs de validation CÔTÉ CLIENT ---
+  
   const [clientErrors, setClientErrors] = useState<Record<string, string[] | undefined> | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
