@@ -1,21 +1,21 @@
 
 "use client";
-import { motion, Variants } from "framer-motion"; 
-import styles from './Hero.module.scss'; 
+import { motion, Variants } from "framer-motion";
+import styles from './Hero.module.scss';
 
 export default function Hero() {
-  
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3, 
+        staggerChildren: 0.3,
       },
     },
   };
 
-  
+
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -47,7 +47,7 @@ export default function Hero() {
           href="#contact"
           className={styles.callToAction}
           variants={itemVariants}
-          whileHover={{ scale: 1.05, backgroundColor: '#1d4ed8' }} 
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           Obtenir un Devis
