@@ -1,48 +1,50 @@
-// app/components/Realisations.module.scss
-@import '../Layout.module.scss'; 
+.section {
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 .realisationsGrid {
   display: grid;
-  grid-template-columns: 1fr; 
-  gap: 2rem; 
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
 
-  @media (min-width: 768px) { 
+  @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.realisationCard {
-  background-color: white;
-  border-radius: 0.75rem; 
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
-  overflow: hidden; // Garde l'image dans les coins arrondis
-  transition: all 0.3s ease-out;
+.sliderWrapper {
+  height: 100%;
 }
 
-.imageContainer {
-  position: relative; 
-  width: 100%;
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
 
-  .realisationImage {
-    display: block; // Assure qu'il n'y a pas d'espace en dessous
-    width: 100%; // Prend toute la largeur de la carte
-    height: auto; // Garde l'aspect ratio défini par les props (1000x750)
-    object-fit: cover; // S'assure que l'image couvre la zone
+.viewAllButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #2563eb;
+  /* Blue-600 */
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+
+  &:hover {
+    background-color: #1d4ed8;
+    /* Blue-700 */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(37, 99, 235, 0.3);
   }
-}
 
-.textContainer {
-  padding: 1.5rem; 
-}
-
-.realisationTitle {
-  font-size: 1.25rem; 
-  font-weight: 600; 
-  color: $text-color; 
-  margin-bottom: 0.5rem; 
-}
-
-.realisationDescription {
-  color: #4b5563; 
-  line-height: 1.6;
+  &:active {
+    transform: translateY(0);
+  }
 }

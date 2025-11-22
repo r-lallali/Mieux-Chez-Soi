@@ -1,0 +1,170 @@
+.sliderCard {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    /* Adjust height as needed */
+    overflow: hidden;
+    cursor: col-resize;
+    user-select: none;
+
+    @media (min-width: 768px) {
+        height: 400px;
+    }
+}
+
+.image {
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.afterImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.beforeImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    /* No overflow hidden needed with clip-path */
+}
+
+/* Wait, if wrapper is 50%, and inner image is 100%, it will be 100% of the wrapper (so 50% of total).
+   We need the inner image to be 100% of the CONTAINER.
+   So we need to set width to the inverse of the wrapper width? No.
+   We can use a fixed width if we knew it, but we don't.
+   
+   Correct trick:
+   The .beforeImageWrapper has overflow: hidden.
+   The .beforeImage (inner div) should be the same size as the main container.
+   But since it's a child of the wrapper, 'width: 100%' means width of the wrapper.
+   
+   We need to use a different structure or JS.
+   Actually, let's look at the component again.
+   
+   <div className={styles.beforeImageWrapper} style={{ width: `${sliderPosition}%` }}>
+      <div className={styles.beforeImage}>
+         <Image ... />
+      </div>
+   </div>
+
+   If I set .beforeImage { width: 100vw; } it might work but it's risky.
+   Better: 
+   .beforeImageWrapper { position: absolute; left: 0; top: 0; height: 100%; overflow: hidden; }
+   .beforeImage { position: absolute; left: 0; top: 0; height: 100%; width: 100%; } -> this is relative to wrapper.
+   
+   Let's try to pass the container width to the inner image or use a different trick.
+   Actually, if we use `fill` on Next.js Image, it fills the parent.
+   
+   Let's adjust the component logic slightly in the next step if this CSS is tricky.
+   Actually, I can just set the inner image width to the container's width using JS or just use a background image?
+   No, Next.js Image is better for optimization.
+   
+   Let's try this:
+   .beforeImageWrapper { ... overflow: hidden; }
+   .beforeImage { width: [containerWidth]px; } -> need JS.
+   
+   Alternative:
+   Use `clip-path` on the before image instead of a wrapper div!
+   Much easier.
+*/
+
+.sliderHandle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    /* Let clicks pass through to container */
+}
+
+.sliderLine {
+    width: 2px;
+    height: 100%;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.sliderButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: #2563eb;
+    /* Blue-600 */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.label {
+    position: absolute;
+    top: 1rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 9999px;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+}
+
+.afterImage .label {
+    right: 1rem;
+}
+
+.beforeImage .label {
+    left: 1rem;
+}
+
+.content {
+    padding: 1.5rem;
+    background: white;
+    flex-grow: 1;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    color: #4b5563;
+    line-height: 1.5;
+}
