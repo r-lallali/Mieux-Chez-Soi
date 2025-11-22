@@ -1,5 +1,4 @@
-
-"use server"; 
+"use server";
 
 import { z } from "zod";
 import { Resend } from 'resend';
@@ -16,7 +15,7 @@ export async function sendEmail(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  
+
   const validatedFields = contactSchema.safeParse(Object.fromEntries(formData.entries()));
 
   if (!validatedFields.success) {
@@ -29,16 +28,13 @@ export async function sendEmail(
   }
 
   const { name, email, phone, message } = validatedFields.data;
-  
+
   try {
-    const { data, error } = await resend.emails.send({
-
-      from: 'Nouveau devis MCS<no-reply@devis.mieux-chezsoi.fr>',
-
-      to: ['lallaliralys@gmail.com','mieuxchezsoirenove@gmail.com','contact@mieux-chezsoi.fr'], 
-      
+    // 1. Email à l'Admin (Vous)
+    const { error: adminError } = await resend.emails.send({
+      from: 'Nouveau devis MCS <no-reply@devis.mieux-chezsoi.fr>',
+      to: ['lallaliralys@gmail.com', 'contact@mieux-chezsoi.fr'],
       subject: `Nouveau devis de ${name}`,
-
       html: `
         <p><strong>Nom:</strong> ${name}</p>
         <p><strong>Email du client:</strong> ${email}</p>
@@ -49,12 +45,40 @@ export async function sendEmail(
       `
     });
 
-    if (error) {
-      console.error("Erreur Resend:", error);
-      return { 
-        success: false, 
-        message: "Échec de l'envoi de l'email. Veuillez réessayer." 
+    if (adminError) {
+      console.error("Erreur envoi Admin:", adminError);
+      return {
+        success: false,
+        message: "Échec de l'envoi de l'email administrateur."
       };
+    }
+
+    // 2. Email de confirmation au Client + BCC Trustpilot
+    const { error: clientError } = await resend.emails.send({
+      from: 'Mieux Chez Soi <no-reply@devis.mieux-chezsoi.fr>',
+      to: [email], // Le client
+      bcc: ['mieux-chezsoi.fr+e8a111b5c1@invite.trustpilot.com'], // Trustpilot
+      replyTo: 'contact@mieux-chezsoi.fr',
+      subject: `Confirmation de votre demande de devis - Mieux Chez Soi`,
+      html: `
+        <div style="font-family: sans-serif; color: #333;">
+          <h2>Bonjour ${name},</h2>
+          <p>Nous avons bien reçu votre demande de devis et nous vous en remercions.</p>
+          <p>Notre équipe va étudier votre projet et vous recontactera très prochainement (sous 24h à 48h).</p>
+          <br>
+          <p><strong>Récapitulatif de votre demande :</strong></p>
+          <p><em>"${message.replace(/\n/g, "<br>")}"</em></p>
+          <br>
+          <p>Cordialement,</p>
+          <p><strong>L'équipe Mieux Chez Soi</strong><br>
+          <a href="https://www.mieux-chezsoi.fr" style="color: #9A1B2F;">www.mieux-chezsoi.fr</a></p>
+        </div>
+      `
+    });
+
+    if (clientError) {
+      console.error("Erreur envoi Client:", clientError);
+      // On ne retourne pas d'erreur fatale ici car l'admin a bien reçu le devis
     }
 
     return {
@@ -64,9 +88,9 @@ export async function sendEmail(
 
   } catch (exception) {
     console.error("Exception lors de l'envoi:", exception);
-    return { 
-      success: false, 
-      message: "Une erreur interne est survenue. Veuillez réessayer." 
+    return {
+      success: false,
+      message: "Une erreur interne est survenue. Veuillez réessayer."
     };
   }
 }
