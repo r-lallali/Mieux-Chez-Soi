@@ -1,3 +1,15 @@
+// app/Layout.module.scss
+
+// Variables de couleurs (optionnel, mais bonne pratique)
+$primary-color: #9A1B2F; // Bordeaux "Mieux Chez Soi"
+$secondary-color: #ef4444; // Rouge similaire à l'ancien Tailwind red-600
+$text-color: #1f2937; // Gris foncé
+$bg-color: #f9fafb; // Gris très clair
+
+:global(html) {
+  scroll-behavior: smooth;
+}
+
 .body {
   font-family: var(--font-inter); // Utilise la police Inter importée
   color: $text-color;
