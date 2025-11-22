@@ -6,7 +6,8 @@
   grid-template-columns: 1fr;
   gap: 2rem; // gap-8
 
-  @media (min-width: 768px) { // md
+  @media (min-width: 768px) {
+    // md
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -25,15 +26,27 @@
   justify-content: center;
   margin-bottom: 1rem; // mb-4
 
-  svg { // Cible les icônes lucide-react
+  svg {
+    // Cible les icônes lucide-react
     height: 3rem; // h-12
     width: 3rem; // w-12
   }
 }
 
-.icon-0 svg { color: $primary-color; } // Wrench - bleu
-.icon-1 svg { color: $secondary-color; } // Zap - rouge
-.icon-2 svg { color: #10b981; } // Home - vert (similar to green-600)
+// Wrench - bleu
+.icon-0 svg {
+  color: #257ff5;
+}
+
+// Zap - rouge
+.icon-1 svg {
+  color: $secondary-color;
+}
+
+// Home - vert (similar to green-600)
+.icon-2 svg {
+  color: #10b981;
+}
 
 .serviceTitle {
   font-size: 1.25rem; // text-xl
