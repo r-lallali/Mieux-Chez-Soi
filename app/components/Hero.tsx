@@ -47,7 +47,7 @@ export default function Hero() {
           href="#contact"
           className={styles.callToAction}
           variants={itemVariants}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05, backgroundColor: '#7a1525' }}
           whileTap={{ scale: 0.95 }}
         >
           Obtenir un Devis
