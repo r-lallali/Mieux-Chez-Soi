@@ -1,7 +1,7 @@
-// app/components/Header.module.scss
+
 @import '../Layout.module.scss'; 
 
-// ... (styles .headerWrapper, .header, .nav, .logoLink, .logoImage inchangés) ...
+
 .headerWrapper {
   position: sticky;
   top: 0;
@@ -39,14 +39,14 @@
 .logoText {
   font-size: 1rem; 
   font-weight: 700; 
-  color: #b12525 ; // Utilise la nouvelle variable rouge (plus foncée)
+  color: #b12525 ; 
   
   @media (max-width: 400px) {
     display: none; 
   }
 }
 
-// --- Liens Desktop (inchangés) ---
+
 .navLinks {
   display: none; 
   align-items: center;
@@ -92,7 +92,7 @@
 }
 
 
-// --- STYLES MOBILES (inchangés) ---
+
 .mobileMenuButton {
   background: none;
   border: none;

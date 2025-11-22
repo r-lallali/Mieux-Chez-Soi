@@ -71,11 +71,11 @@ export default function Testimonials() {
           ))}
       </motion.div>
 
-      {/* TrustBox widget - Review Collector */}
+      {}
       <div className="trustpilot-widget" style={{ marginTop: '20px' }} data-locale="fr-FR" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6921d9a534e60d463bf99720" data-style-height="52px" data-style-width="100%" data-token="6b8b1984-9daf-42bc-a436-109815c1047d">
         <a href="https://www.trustpilot.com/review/mieux-chezsoi.fr" target="_blank" rel="noopener">Trustpilot</a>
       </div>
-      {/* End TrustBox widget */}
+      {}
 
       <Script
         src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"

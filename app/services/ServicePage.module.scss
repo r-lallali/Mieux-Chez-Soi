@@ -1,9 +1,9 @@
-// app/services/ServicePage.module.scss
+
 @import '../Layout.module.scss';
 
 .pageContainer {
   @extend .container;
-  max-width: 900px; // Contenu plus centré
+  max-width: 900px; 
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
@@ -15,7 +15,7 @@
 }
 
 .title {
-  @extend .sectionTitle; // Réutilise le style de titre (OK car dans Layout.module.scss)
+  @extend .sectionTitle; 
   text-align: left;
   margin-bottom: 0.5rem;
 }
@@ -46,26 +46,26 @@
   }
 }
 
-// --- MODIFICATION ICI ---
-// Remplacement de @extend par les styles directs
+
+
 .ctaButton {
-  // Styles de base (similaires à .callToAction)
+  
   background-color: $primary-color;
   color: white;
   border-radius: 0.375rem;
   font-weight: 600;
   display: inline-block;
   transition: background-color 0.3s ease;
-  text-decoration: none; // Assure que les balises <Link> sont bien stylées
+  text-decoration: none; 
   border: none;
   cursor: pointer;
 
-  // Styles spécifiques au bouton de cette page
+  
   padding: 0.75rem 1.5rem;
   font-size: 1.1rem;
   margin-top: 2rem;
 
   &:hover {
-    background-color: $primary-color-dark; // Bleu plus foncé
+    background-color: $primary-color-dark; 
   }
 }

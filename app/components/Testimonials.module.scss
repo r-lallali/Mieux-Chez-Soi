@@ -1,4 +1,4 @@
-// app/components/Testimonials.module.scss
+
 @import '../Layout.module.scss';
 
 .testimonialsGrid {
@@ -29,7 +29,7 @@
 .starIcon {
   width: 1.25rem;
   height: 1.25rem;
-  color: #f59e0b; // text-yellow-500
+  color: #f59e0b; 
   fill: #f59e0b;
 }
 
@@ -39,7 +39,7 @@
   font-style: italic;
   color: $text-color;
   margin: 0 0 1.5rem 0;
-  flex-grow: 1; // Pousse l'auteur en bas
+  flex-grow: 1; 
 }
 
 .author {
@@ -49,7 +49,7 @@
 
   span {
     font-weight: 400;
-    color: #6b7280; // text-gray-500
+    color: #6b7280; 
     font-size: 0.9rem;
   }
 }

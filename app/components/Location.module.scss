@@ -1,4 +1,4 @@
-// app/components/Location.module.scss
+
 @import '../Layout.module.scss';
 
 .locationGrid {
@@ -7,7 +7,7 @@
   gap: 3rem;
 
   @media (min-width: 900px) {
-    grid-template-columns: 1fr 1.5fr; // Colonne de texte plus petite
+    grid-template-columns: 1fr 1.5fr; 
   }
 }
 

@@ -18,7 +18,7 @@
     position: relative;
     width: 100%;
     height: 300px;
-    /* Adjust height as needed */
+    
     overflow: hidden;
     cursor: col-resize;
     user-select: none;
@@ -48,7 +48,7 @@
     width: 100%;
     height: 100%;
     z-index: 10;
-    /* No overflow hidden needed with clip-path */
+    
 }
 
 .sliderHandle {
@@ -63,7 +63,7 @@
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    /* Let clicks pass through to container */
+    
 }
 
 .sliderLine {
@@ -81,7 +81,7 @@
     width: 40px;
     height: 40px;
     background: #9A1B2F;
-    /* Bordeaux */
+    
     border-radius: 50%;
     display: flex;
     align-items: center;

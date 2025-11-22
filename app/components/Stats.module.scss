@@ -1,18 +1,18 @@
-// app/components/Stats.module.scss
+
 @import '../Layout.module.scss';
 
-// --- MODIFIÉ : .statsContainer est devenu .statsGrid ---
+
 .statsGrid {
-  // --- SUPPRIMÉ : @extend .container (géré par page.tsx) ---
+  
   display: grid;
-  grid-template-columns: 1fr; // 1 colonne sur mobile
+  grid-template-columns: 1fr; 
   gap: 2rem;
   
-  // --- SUPPRIMÉ : padding, background-color, color, border-radius, margin-top, position, z-index, box-shadow ---
+  
   
   @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr); // 3 colonnes sur desktop
-    // --- SUPPRIMÉ : padding, margin-top ---
+    grid-template-columns: repeat(3, 1fr); 
+    
   }
 }
 
@@ -21,12 +21,12 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1rem; // Ajout d'un padding interne pour l'espacement
+  padding: 1rem; 
 }
 
 .statIcon {
   margin-bottom: 0.5rem;
-  color: $primary-color; // --- MODIFIÉ : Couleur pour les icônes
+  color: $primary-color; 
   
   svg {
     width: 2.5rem; 
@@ -38,7 +38,7 @@
   font-size: 2.5rem; 
   font-weight: 700; 
   line-height: 1.1;
-  color: $text-color; // --- MODIFIÉ : Couleur du texte
+  color: $text-color; 
 
   @media (min-width: 768px) {
     font-size: 3rem; 
@@ -48,6 +48,6 @@
 .statLabel {
   font-size: 1rem; 
   font-weight: 500; 
-  color: #4b5563; // --- MODIFIÉ : Couleur du texte
+  color: #4b5563; 
   margin: 0;
 }

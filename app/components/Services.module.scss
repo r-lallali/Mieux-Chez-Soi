@@ -1,61 +1,61 @@
-// app/components/Services.module.scss
-@import '../Layout.module.scss'; // Importer les variables globales
+
+@import '../Layout.module.scss'; 
 
 .servicesGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem; // gap-8
+  gap: 2rem; 
 
   @media (min-width: 768px) {
-    // md
+    
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .serviceCard {
   background-color: white;
-  padding: 2rem; // p-6
-  border-radius: 0.75rem; // rounded-lg (un peu plus arrondi que md)
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); // shadow-lg
+  padding: 2rem; 
+  border-radius: 0.75rem; 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
   text-align: center;
-  transition: all 0.3s ease-out; // transition pour le hover/scale
+  transition: all 0.3s ease-out; 
 }
 
 .iconContainer {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem; // mb-4
+  margin-bottom: 1rem; 
 
   svg {
-    // Cible les icônes lucide-react
-    height: 3rem; // h-12
-    width: 3rem; // w-12
+    
+    height: 3rem; 
+    width: 3rem; 
   }
 }
 
-// Wrench - bleu
+
 .icon-0 svg {
   color: #257ff5;
 }
 
-// Zap - rouge
+
 .icon-1 svg {
   color: $secondary-color;
 }
 
-// Home - vert (similar to green-600)
+
 .icon-2 svg {
   color: #10b981;
 }
 
 .serviceTitle {
-  font-size: 1.25rem; // text-xl
-  font-weight: 600; // font-semibold
-  color: $text-color; // text-gray-900
-  margin-bottom: 0.5rem; // mb-2
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  color: $text-color; 
+  margin-bottom: 0.5rem; 
 }
 
 .serviceDescription {
-  color: #4b5563; // text-gray-600
+  color: #4b5563; 
   line-height: 1.6;
 }

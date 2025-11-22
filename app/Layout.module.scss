@@ -1,29 +1,29 @@
-// app/Layout.module.scss
 
-// Variables de couleurs (optionnel, mais bonne pratique)
-$primary-color: #9A1B2F; // Bordeaux "Mieux Chez Soi"
-$primary-color-dark: #7a1525; // Bordeaux plus foncé pour le hover
-$secondary-color: #ef4444; // Rouge similaire à l'ancien Tailwind red-600
-$text-color: #1f2937; // Gris foncé
-$bg-color: #f9fafb; // Gris très clair
+
+
+$primary-color: #9A1B2F; 
+$primary-color-dark: #7a1525; 
+$secondary-color: #ef4444; 
+$text-color: #1f2937; 
+$bg-color: #f9fafb; 
 
 :global(html) {
   scroll-behavior: smooth;
 }
 
 .body {
-  font-family: var(--font-inter); // Utilise la police Inter importée
+  font-family: var(--font-inter); 
   color: $text-color;
   background-color: $bg-color;
   margin: 0;
   padding: 0;
-  box-sizing: border-box; // Bonne pratique
+  box-sizing: border-box; 
 }
 
-// Réinitialisation globale des liens
+
 :global(a) {
   text-decoration: none;
-  color: inherit; // Les liens hériteront de la couleur du texte parent
+  color: inherit; 
 }
 
 .footer {
@@ -52,7 +52,7 @@ $bg-color: #f9fafb; // Gris très clair
   }
 }
 
-// --- NOUVEAU STYLE POUR LE TÉLÉPHONE DU FOOTER ---
+
 .footerPhone {
   font-size: 1.1rem;
   font-weight: 600;
@@ -79,7 +79,7 @@ $bg-color: #f9fafb; // Gris très clair
   margin: 0;
 }
 
-// --- Classes utilitaires ---
+
 
 .container {
   width: 100%;
@@ -90,13 +90,13 @@ $bg-color: #f9fafb; // Gris très clair
   padding-right: 1rem;
 
   @media (min-width: 640px) {
-    // sm
+    
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
   @media (min-width: 1024px) {
-    // lg
+    
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -105,26 +105,26 @@ $bg-color: #f9fafb; // Gris très clair
 .section {
   padding-top: 4rem;
   padding-bottom: 4rem;
-  background-color: white; // Par défaut blanc, peut être override
+  background-color: white; 
 }
 
 .sectionTitle {
-  font-size: 2.25rem; // text-4xl
-  font-weight: 700; // font-bold
+  font-size: 2.25rem; 
+  font-weight: 700; 
   text-align: center;
   color: $text-color;
-  margin-bottom: 3rem; // mb-12
+  margin-bottom: 3rem; 
 }
 
-// --- Classes AJOUTÉES ---
+
 
 .sectionBgGray {
-  background-color: #f3f4f6; // bg-gray-100
+  background-color: #f3f4f6; 
 }
 
 .maxWidthLg {
-  // Concerne le contenu *dans* le container.
-  // max-w-3xl (768px)
+  
+  
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
@@ -132,11 +132,11 @@ $bg-color: #f9fafb; // Gris très clair
 
 .sectionDescription {
   text-align: center;
-  color: #4b5563; // text-gray-600
-  margin-bottom: 2rem; // mb-8
-  max-width: 42rem; // max-w-2xl
+  color: #4b5563; 
+  margin-bottom: 2rem; 
+  max-width: 42rem; 
   margin-left: auto;
   margin-right: auto;
-  font-size: 1.125rem; // text-lg
+  font-size: 1.125rem; 
   line-height: 1.6;
 }

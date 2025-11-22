@@ -1,4 +1,4 @@
-// app/components/About.module.scss
+
 @import '../Layout.module.scss';
 
 .aboutGrid {
@@ -16,19 +16,19 @@
   p {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: #4b5563; // text-gray-600
+    color: #4b5563; 
   }
 }
 
 .subTitle {
-  font-size: 1.5rem; // text-2xl
+  font-size: 1.5rem; 
   font-weight: 600;
   color: $text-color;
   margin-bottom: 1.5rem;
   border-left: 4px solid $primary-color;
   padding-left: 0.75rem;
 
-  // Centre le titre sur mobile
+  
   @media (max-width: 899px) {
     text-align: center;
     border-left: none;
@@ -45,19 +45,19 @@
     flex-direction: column;
     gap: 1rem;
 
-    // --- MODIFICATION ICI ---
-    // Au lieu de centrer les 'li' (ce qui crée la cascade)
-    // Nous centrons le bloc 'ul' lui-même sur la page mobile.
+    
+    
+    
     @media (max-width: 899px) {
-      // align-items: center; // <-- SUPPRIMER CECI
-      width: fit-content;    // <-- AJOUTER : L'UL prend la largeur de son contenu
-      margin-left: auto;    // <-- AJOUTER : Centre le bloc
-      margin-right: auto;   // <-- AJOUTER : Centre le bloc
+      
+      width: fit-content;    
+      margin-left: auto;    
+      margin-right: auto;   
     }
   }
 
   li {
-    // Les 'li' restent alignés à gauche par défaut
+    
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -72,7 +72,7 @@
   justify-content: center;
   flex-shrink: 0;
   padding: 0.75rem;
-  border-radius: 999px; // rounded-full
+  border-radius: 999px; 
   background-color: rgba($primary-color, 0.1);
   color: $primary-color;
 
