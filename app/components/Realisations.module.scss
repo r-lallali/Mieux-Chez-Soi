@@ -19,6 +19,27 @@
   height: 100%;
 }
 
+.section {
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.realisationsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.sliderWrapper {
+  height: 100%;
+}
+
 .buttonContainer {
   display: flex;
   justify-content: center;
@@ -28,20 +49,20 @@
 .viewAllButton {
   display: inline-block;
   padding: 1rem 2rem;
-  background-color: #2563eb;
-  /* Blue-600 */
+  background-color: #9A1B2F;
+  /* Bordeaux */
   color: white;
   font-weight: 600;
   border-radius: 0.5rem;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 4px 6px rgba(154, 27, 47, 0.2);
 
   &:hover {
-    background-color: #1d4ed8;
-    /* Blue-700 */
+    background-color: #781222;
+    /* Darker Bordeaux */
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 6px 8px rgba(154, 27, 47, 0.3);
   }
 
   &:active {

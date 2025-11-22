@@ -1,11 +1,11 @@
 
-"use client"; 
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
-import { motion, Variants, AnimatePresence } from "framer-motion"; 
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Disclosure } from '@headlessui/react';
-import styles from './Header.module.scss'; 
+import styles from './Header.module.scss';
 
 const phoneNumber = "06 51 24 52 84";
 const phoneHref = `tel:${phoneNumber.replace(/\s/g, '')}`;
@@ -16,7 +16,7 @@ export default function Header() {
     visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120, damping: 20 } },
   };
   const linkVariants: Variants = {
-    hover: { scale: 1.05, color: '#2563eb' }, 
+    hover: { scale: 1.05, color: '#9A1B2F' },
     tap: { scale: 0.95 },
   };
   const mobilePanelVariants: Variants = {
@@ -36,16 +36,16 @@ export default function Header() {
             animate="visible"
           >
             <nav className={styles.nav}>
-              
+
               <Link href="/" className={styles.logoLink}>
-                
+
                 <Image
-                  src="/images/logo.png" 
+                  src="/images/logo.png"
                   alt="Mieux chez soi Logo"
-                  width={195} 
-                  height={70} 
+                  width={195}
+                  height={70}
                   className={styles.logoImage}
-                  priority 
+                  priority
                 />
                 <motion.span
                   className={styles.logoText}
@@ -84,9 +84,9 @@ export default function Header() {
                     Nous trouver
                   </motion.a>
                 </Link>
-                
-                <motion.a 
-                  href={phoneHref} 
+
+                <motion.a
+                  href={phoneHref}
                   className={styles.phoneLink}
                   variants={linkVariants} whileHover="hover" whileTap="tap"
                 >
@@ -95,7 +95,7 @@ export default function Header() {
                 </motion.a>
               </div>
 
-              <Disclosure.Button 
+              <Disclosure.Button
                 className={styles.mobileMenuButton}
                 aria-label="Ouvrir le menu"
               >

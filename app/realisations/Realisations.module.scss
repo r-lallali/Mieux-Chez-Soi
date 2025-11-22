@@ -8,32 +8,6 @@
 .contentWrapper {
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.header {
-    margin-bottom: 2rem;
-}
-
-.backLink {
-    display: inline-flex;
-    align-items: center;
-    color: #2563eb;
-    /* blue-600 */
-    text-decoration: none;
-    margin-bottom: 1rem;
-    font-weight: 500;
-    transition: color 0.2s;
-
-    &:hover {
-        color: #1e40af;
-        /* blue-800 */
-    }
-}
-
-.title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #111827;
     /* gray-900 */
     margin-bottom: 0.5rem;
 }

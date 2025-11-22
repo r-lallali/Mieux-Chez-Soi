@@ -1,7 +1,7 @@
 // app/Layout.module.scss
 
 // Variables de couleurs (optionnel, mais bonne pratique)
-$primary-color: #2563eb; // Bleu similaire à l'ancien Tailwind blue-600
+$primary-color: #9A1B2F; // Bordeaux "Mieux Chez Soi"
 $secondary-color: #ef4444; // Rouge similaire à l'ancien Tailwind red-600
 $text-color: #1f2937; // Gris foncé
 $bg-color: #f9fafb; // Gris très clair
@@ -27,23 +27,23 @@ $bg-color: #f9fafb; // Gris très clair
 
 .footer {
   text-align: center;
-  padding: 2.5rem 1rem; 
-  background-color: #111827; 
-  color: #d1d5db; 
+  padding: 2.5rem 1rem;
+  background-color: #111827;
+  color: #d1d5db;
   margin-top: 3rem;
   line-height: 1.6;
 }
 
 .footerContent {
-  @extend .container; 
-  max-width: 800px; 
+  @extend .container;
+  max-width: 800px;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 
   p {
     margin: 0.25rem 0;
   }
-  
+
   strong {
     color: white;
     font-size: 1.1rem;
@@ -60,6 +60,7 @@ $bg-color: #f9fafb; // Gris très clair
   a {
     color: white;
     text-decoration: none;
+
     &:hover {
       color: $primary-color;
     }
@@ -68,12 +69,12 @@ $bg-color: #f9fafb; // Gris très clair
 
 .footerZone {
   font-size: 0.85rem;
-  color: #9ca3af; 
+  color: #9ca3af;
 }
 
 .footerCopyright {
   font-size: 0.8rem;
-  color: #6b7280; 
+  color: #6b7280;
   margin: 0;
 }
 
@@ -87,11 +88,14 @@ $bg-color: #f9fafb; // Gris très clair
   padding-left: 1rem;
   padding-right: 1rem;
 
-  @media (min-width: 640px) { // sm
+  @media (min-width: 640px) {
+    // sm
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-  @media (min-width: 1024px) { // lg
+
+  @media (min-width: 1024px) {
+    // lg
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -120,7 +124,7 @@ $bg-color: #f9fafb; // Gris très clair
 .maxWidthLg {
   // Concerne le contenu *dans* le container.
   // max-w-3xl (768px)
-  max-width: 48rem; 
+  max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
 }
