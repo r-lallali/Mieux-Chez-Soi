@@ -6,7 +6,7 @@ import { useFormStatus } from "react-dom";
 import { sendEmail, type FormState } from "../actions/sendEmail";
 import { User, Mail, CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { step1Schema } from "../lib/schemas"; 
+import { step1Schema } from "../lib/schemas";
 
 import styles from './ContactFormStepper.module.scss';
 
@@ -18,7 +18,7 @@ function SubmitButton() {
       type="submit"
       disabled={pending}
       className={styles.submitButton}
-      whileHover={{ scale: pending ? 1 : 1.05, backgroundColor: pending ? '' : '#1d4ed8' }}
+      whileHover={{ scale: pending ? 1 : 1.05, backgroundColor: pending ? '' : '#781222' }}
       whileTap={{ scale: pending ? 1 : 0.95 }}
     >
       {pending ? "Envoi en cours..." : "Envoyer le Devis"}
@@ -43,7 +43,7 @@ export default function ContactFormStepper() {
     message: "",
   });
 
-  
+
   const [clientErrors, setClientErrors] = useState<Record<string, string[] | undefined> | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -62,7 +62,7 @@ export default function ContactFormStepper() {
   };
 
   const handleNextStep = () => {
- 
+
     const result = step1Schema.safeParse(formData);
     if (!result.success) {
       setClientErrors(result.error.flatten().fieldErrors);
@@ -162,8 +162,8 @@ export default function ContactFormStepper() {
                   <input
                     type="text" id="name" name="name" required
                     className={styles.input}
-                    value={formData.name} 
-                    onChange={handleChange} 
+                    value={formData.name}
+                    onChange={handleChange}
                   />
                   {(clientErrors?.name || state.errors?.name) && (
                     <p className={styles.errorText}>
@@ -176,8 +176,8 @@ export default function ContactFormStepper() {
                   <input
                     type="email" id="email" name="email" required
                     className={styles.input}
-                    value={formData.email} 
-                    onChange={handleChange} 
+                    value={formData.email}
+                    onChange={handleChange}
                   />
                   {(clientErrors?.email || state.errors?.email) && (
                     <p className={styles.errorText}>
@@ -191,14 +191,14 @@ export default function ContactFormStepper() {
                 <input
                   type="tel" id="phone" name="phone"
                   className={styles.input}
-                  value={formData.phone} 
-                  onChange={handleChange} 
+                  value={formData.phone}
+                  onChange={handleChange}
                 />
-                 {(clientErrors?.phone || state.errors?.phone) && (
-                    <p className={styles.errorText}>
-                      {clientErrors?.phone?.[0] || state.errors?.phone?.[0]}
-                    </p>
-                  )}
+                {(clientErrors?.phone || state.errors?.phone) && (
+                  <p className={styles.errorText}>
+                    {clientErrors?.phone?.[0] || state.errors?.phone?.[0]}
+                  </p>
+                )}
               </div>
               <div className={styles.navigationButtons}>
                 <button type="button" onClick={handleNextStep} className={styles.nextButton}>
@@ -225,8 +225,8 @@ export default function ContactFormStepper() {
                 <textarea
                   id="message" name="message" rows={6} required
                   className={styles.textarea}
-                  value={formData.message} 
-                  onChange={handleChange} 
+                  value={formData.message}
+                  onChange={handleChange}
                 ></textarea>
                 {state.errors?.message && (
                   <p className={styles.errorText}>{state.errors.message[0]}</p>
