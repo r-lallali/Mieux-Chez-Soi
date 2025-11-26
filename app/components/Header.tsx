@@ -61,7 +61,7 @@ export default function Header() {
                 </Link>
                 <Link href="/#services" passHref>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
-                    Nos Services
+                    Services
                   </motion.a>
                 </Link>
                 <Link href="/#realisations" passHref>
@@ -119,13 +119,13 @@ export default function Header() {
                   À Propos
                 </Disclosure.Button>
                 <Disclosure.Button as={Link} href="/#services" className={styles.mobileNavLink}>
-                  Nos Services
+                  Services
                 </Disclosure.Button>
                 <Disclosure.Button as={Link} href="/#realisations" className={styles.mobileNavLink}>
                   Réalisations
                 </Disclosure.Button>
                 <Disclosure.Button as={Link} href="/#testimonials" className={styles.mobileNavLink}>
-                  Avis Clients
+                  Avis
                 </Disclosure.Button>
                 <Disclosure.Button as={Link} href="/#contact" className={styles.mobileNavLink}>
                   Contact
