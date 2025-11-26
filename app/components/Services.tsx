@@ -1,9 +1,9 @@
 
 "use client";
 import { Wrench, Zap, Home } from "lucide-react";
-import { motion, Variants } from "framer-motion"; 
-import Link from 'next/link'; 
-import styles from './Services.module.scss'; 
+import { motion, Variants } from "framer-motion";
+import Link from 'next/link';
+import styles from './Services.module.scss';
 
 
 const servicesData = [
@@ -33,7 +33,7 @@ export default function Services() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, 
+        staggerChildren: 0.2,
       },
     },
   };
@@ -48,16 +48,16 @@ export default function Services() {
       className={styles.servicesGrid}
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible" 
-      viewport={{ once: true, amount: 0.5 }} 
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
     >
       {servicesData.map((service, index) => (
-        
-        <Link href={service.href} key={service.title} className={styles.serviceLink}>
+
+        <Link href={service.href} key={service.title} className={styles.serviceLink} prefetch={false}>
           <motion.div
             className={styles.serviceCard}
             variants={itemVariants}
-            whileHover={{ scale: 1.03, boxShadow: '0 15px 30px rgba(0,0,0,0.15)' }} 
+            whileHover={{ scale: 1.03, boxShadow: '0 15px 30px rgba(0,0,0,0.15)' }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <div className={`${styles.iconContainer} ${styles[`icon-${index}`]}`}>{service.icon}</div>

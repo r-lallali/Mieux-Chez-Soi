@@ -25,7 +25,7 @@ export default function RealisationsPage() {
         <div className={styles.container}>
             <div className={styles.contentWrapper}>
                 <div className={styles.header}>
-                    <Link href="/" className={styles.backLink}>
+                    <Link href="/" className={styles.backLink} prefetch={false}>
                         <ArrowLeft size={20} className="mr-2" />
                         Retour à l'accueil
                     </Link>

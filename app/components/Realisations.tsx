@@ -1,3 +1,4 @@
+
 "use client";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
@@ -73,7 +74,7 @@ export default function Realisations() {
       </motion.div>
 
       <div className={styles.buttonContainer}>
-        <Link href="/realisations" className={styles.viewAllButton}>
+        <Link href="/realisations" className={styles.viewAllButton} prefetch={false}>
           Voir toutes nos réalisations
         </Link>
       </div>
