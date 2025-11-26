@@ -34,7 +34,6 @@ export default function About() {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h3 className={styles.subTitle}>Qui sommes-nous ?</h3>
         <p>
           Passionnés par la rénovation et basés à Gonesse dans le 95, Mieux Chez Soi est une équipe jeune et dynamique de 5 salariés prête à intervenir pour tous vos travaux.
           Avec plus de 6 ans d'expérience, nous mettons notre savoir-faire au service de vos projets,
