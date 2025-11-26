@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useRef, ChangeEvent, useActionState } from "react";
@@ -6,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { sendEmail, type FormState } from "../actions/sendEmail";
 import { User, Mail, CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { step1Schema } from "../lib/schemas";
+import { step1Schema, step2Schema } from "../lib/schemas";
 
 import styles from './ContactFormStepper.module.scss';
 
@@ -62,7 +61,6 @@ export default function ContactFormStepper() {
   };
 
   const handleNextStep = () => {
-
     const result = step1Schema.safeParse(formData);
     if (!result.success) {
       setClientErrors(result.error.flatten().fieldErrors);
@@ -70,6 +68,18 @@ export default function ContactFormStepper() {
       setClientErrors(null);
       setCurrentStep(2);
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (currentStep === 2) {
+      const result = step2Schema.safeParse({ message: formData.message });
+      if (!result.success) {
+        e.preventDefault();
+        setClientErrors(prev => ({ ...prev, ...result.error.flatten().fieldErrors }));
+        return;
+      }
+    }
+    // If valid, let the form action proceed
   };
 
   useEffect(() => {
@@ -144,7 +154,7 @@ export default function ContactFormStepper() {
         )}
       </AnimatePresence>
 
-      <form ref={formRef} action={formAction} className={styles.formContent}>
+      <form ref={formRef} action={formAction} onSubmit={handleSubmit} className={styles.formContent}>
         <AnimatePresence mode="wait">
           {currentStep === 1 && (
             <motion.div
@@ -230,6 +240,9 @@ export default function ContactFormStepper() {
                 ></textarea>
                 {state.errors?.message && (
                   <p className={styles.errorText}>{state.errors.message[0]}</p>
+                )}
+                {clientErrors?.message && (
+                  <p className={styles.errorText}>{clientErrors.message[0]}</p>
                 )}
               </div>
               <div className={styles.navigationButtons}>
