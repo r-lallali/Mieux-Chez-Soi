@@ -54,32 +54,32 @@ export default function Header() {
                 </motion.span>
               </Link>
               <div className={styles.navLinks}>
-                <Link href="/#about" passHref>
+                <Link href="/#about" passHref legacyBehavior>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     À Propos
                   </motion.a>
                 </Link>
-                <Link href="/#services" passHref>
+                <Link href="/#services" passHref legacyBehavior>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Services
                   </motion.a>
                 </Link>
-                <Link href="/#realisations" passHref>
+                <Link href="/#realisations" passHref legacyBehavior>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Réalisations
                   </motion.a>
                 </Link>
-                <Link href="/#testimonials" passHref>
+                <Link href="/#testimonials" passHref legacyBehavior>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Avis
                   </motion.a>
                 </Link>
-                <Link href="/#contact" passHref>
+                <Link href="/#contact" passHref legacyBehavior>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Contact
                   </motion.a>
                 </Link>
-                <Link href="/#location" passHref>
+                <Link href="/#location" passHref legacyBehavior>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Nous trouver
                   </motion.a>

@@ -30,6 +30,35 @@ const initialState: FormState = {
   message: "",
 };
 
+interface StepperVisualProps {
+  currentStep: number;
+}
+
+const StepperVisual = ({ currentStep }: StepperVisualProps) => (
+  <div className={styles.stepperVisual}>
+    <div className={styles.stepItem}>
+      <div className={`${styles.stepIcon} ${currentStep >= 1 ? styles.active : ''}`}>
+        {currentStep > 1 ? <CheckCircle size={24} /> : <User size={24} />}
+      </div>
+      <p className={`${styles.stepLabel} ${currentStep >= 1 ? styles.active : ''}`}>Informations</p>
+    </div>
+    <div className={`${styles.stepLine} ${currentStep > 1 ? styles.active : ''}`}></div>
+    <div className={styles.stepItem}>
+      <div className={`${styles.stepIcon} ${currentStep >= 2 ? styles.active : ''}`}>
+        {currentStep > 2 ? <CheckCircle size={24} /> : <Mail size={24} />}
+      </div>
+      <p className={`${styles.stepLabel} ${currentStep >= 2 ? styles.active : ''}`}>Message</p>
+    </div>
+    <div className={`${styles.stepLine} ${currentStep > 2 ? styles.active : ''}`}></div>
+    <div className={styles.stepItem}>
+      <div className={`${styles.stepIcon} ${currentStep === 3 ? styles.success : ''} ${currentStep === 3 ? '' : styles.inactive}`}>
+        <CheckCircle size={24} />
+      </div>
+      <p className={`${styles.stepLabel} ${currentStep === 3 ? styles.success : ''}`}>Envoyé</p>
+    </div>
+  </div>
+);
+
 export default function ContactFormStepper() {
   const [currentStep, setCurrentStep] = useState(1);
   const [state, formAction] = useActionState(sendEmail, initialState);
@@ -106,30 +135,6 @@ export default function ContactFormStepper() {
     visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 150, damping: 20, delay: 0.2 } },
     exit: { opacity: 0, scale: 0.8 },
   };
-  const StepperVisual = () => (
-    <div className={styles.stepperVisual}>
-      <div className={styles.stepItem}>
-        <div className={`${styles.stepIcon} ${currentStep >= 1 ? styles.active : ''}`}>
-          {currentStep > 1 ? <CheckCircle size={24} /> : <User size={24} />}
-        </div>
-        <p className={`${styles.stepLabel} ${currentStep >= 1 ? styles.active : ''}`}>Informations</p>
-      </div>
-      <div className={`${styles.stepLine} ${currentStep > 1 ? styles.active : ''}`}></div>
-      <div className={styles.stepItem}>
-        <div className={`${styles.stepIcon} ${currentStep >= 2 ? styles.active : ''}`}>
-          {currentStep > 2 ? <CheckCircle size={24} /> : <Mail size={24} />}
-        </div>
-        <p className={`${styles.stepLabel} ${currentStep >= 2 ? styles.active : ''}`}>Message</p>
-      </div>
-      <div className={`${styles.stepLine} ${currentStep > 2 ? styles.active : ''}`}></div>
-      <div className={styles.stepItem}>
-        <div className={`${styles.stepIcon} ${currentStep === 3 ? styles.success : ''} ${currentStep === 3 ? '' : styles.inactive}`}>
-          <CheckCircle size={24} />
-        </div>
-        <p className={`${styles.stepLabel} ${currentStep === 3 ? styles.success : ''}`}>Envoyé</p>
-      </div>
-    </div>
-  );
 
   return (
     <motion.div
@@ -138,7 +143,7 @@ export default function ContactFormStepper() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
     >
-      <StepperVisual />
+      <StepperVisual currentStep={currentStep} />
       <AnimatePresence mode="wait">
         {!state.success && state.message && currentStep !== 3 && (
           <motion.div
