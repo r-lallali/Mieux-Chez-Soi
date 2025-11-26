@@ -21,7 +21,7 @@ export default function ChantiersPage() {
             <li>Coordination tous corps d'état</li>
           </ul>
 
-          <Link href="/#contact" className={styles.ctaButton}>
+          <Link href="/#contact" className={styles.ctaButton} prefetch={false}>
             Discuter d'un nouveau projet
           </Link>
         </div>

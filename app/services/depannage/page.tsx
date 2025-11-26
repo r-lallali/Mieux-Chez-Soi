@@ -21,7 +21,7 @@ export default function DepannagePage() {
             <li>Réparation de chauffe-eau</li>
           </ul>
 
-          <Link href="/#contact" className={styles.ctaButton}>
+          <Link href="/#contact" className={styles.ctaButton} prefetch={false}>
             Contacter pour une urgence
           </Link>
         </div>

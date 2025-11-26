@@ -22,7 +22,7 @@ export default function RenovationPage() {
             <li>Création et modification de cloisons</li>
           </ul>
 
-          <Link href="/#contact" className={styles.ctaButton}>
+          <Link href="/#contact" className={styles.ctaButton} prefetch={false}>
             Demander un devis rénovation
           </Link>
         </div>

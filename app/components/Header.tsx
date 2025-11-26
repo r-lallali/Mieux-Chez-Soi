@@ -54,32 +54,32 @@ export default function Header() {
                 </motion.span>
               </Link>
               <div className={styles.navLinks}>
-                <Link href="/#about" passHref legacyBehavior>
+                <Link href="/#about" passHref legacyBehavior prefetch={false}>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     À Propos
                   </motion.a>
                 </Link>
-                <Link href="/#services" passHref legacyBehavior>
+                <Link href="/#services" passHref legacyBehavior prefetch={false}>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Services
                   </motion.a>
                 </Link>
-                <Link href="/#realisations" passHref legacyBehavior>
+                <Link href="/#realisations" passHref legacyBehavior prefetch={false}>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Réalisations
                   </motion.a>
                 </Link>
-                <Link href="/#testimonials" passHref legacyBehavior>
+                <Link href="/#testimonials" passHref legacyBehavior prefetch={false}>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Avis
                   </motion.a>
                 </Link>
-                <Link href="/#contact" passHref legacyBehavior>
+                <Link href="/#contact" passHref legacyBehavior prefetch={false}>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Contact
                   </motion.a>
                 </Link>
-                <Link href="/#location" passHref legacyBehavior>
+                <Link href="/#location" passHref legacyBehavior prefetch={false}>
                   <motion.a className={styles.navLink} variants={linkVariants} whileHover="hover" whileTap="tap">
                     Nous trouver
                   </motion.a>
@@ -115,22 +115,22 @@ export default function Header() {
                 exit="exit"
                 className={styles.mobilePanel}
               >
-                <Disclosure.Button as={Link} href="/#about" className={styles.mobileNavLink}>
+                <Disclosure.Button as={Link} href="/#about" className={styles.mobileNavLink} prefetch={false}>
                   À Propos
                 </Disclosure.Button>
-                <Disclosure.Button as={Link} href="/#services" className={styles.mobileNavLink}>
+                <Disclosure.Button as={Link} href="/#services" className={styles.mobileNavLink} prefetch={false}>
                   Services
                 </Disclosure.Button>
-                <Disclosure.Button as={Link} href="/#realisations" className={styles.mobileNavLink}>
+                <Disclosure.Button as={Link} href="/#realisations" className={styles.mobileNavLink} prefetch={false}>
                   Réalisations
                 </Disclosure.Button>
-                <Disclosure.Button as={Link} href="/#testimonials" className={styles.mobileNavLink}>
+                <Disclosure.Button as={Link} href="/#testimonials" className={styles.mobileNavLink} prefetch={false}>
                   Avis
                 </Disclosure.Button>
-                <Disclosure.Button as={Link} href="/#contact" className={styles.mobileNavLink}>
+                <Disclosure.Button as={Link} href="/#contact" className={styles.mobileNavLink} prefetch={false}>
                   Contact
                 </Disclosure.Button>
-                <Disclosure.Button as={Link} href="/#location" className={styles.mobileNavLink}>
+                <Disclosure.Button as={Link} href="/#location" className={styles.mobileNavLink} prefetch={false}>
                   Nous trouver
                 </Disclosure.Button>
                 <Disclosure.Button as="a" href={phoneHref} className={styles.mobileUrgentButton}>
