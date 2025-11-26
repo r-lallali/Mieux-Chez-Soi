@@ -41,7 +41,6 @@ export default function About() {
         </p>
       </motion.div>
       <div className={styles.aboutCommitments}>
-        <h3 className={styles.subTitle}>Nos Engagements</h3>
         <motion.ul
           variants={listVariants}
           initial="hidden"

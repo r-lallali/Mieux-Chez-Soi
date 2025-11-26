@@ -53,7 +53,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
             viewport={{ once: true }}
           >
-            Votre Artisan de Confiance
+            Qui sommes-nous ?
           </motion.h2>
           <About />
         </div>
@@ -119,7 +119,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
             viewport={{ once: true }}
           >
-            Qui sommes-nous ?
+            Ils nous font confiance
           </motion.h2>
           <Testimonials />
         </div>
