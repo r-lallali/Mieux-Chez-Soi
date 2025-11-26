@@ -3,6 +3,9 @@
 import { z } from "zod";
 import { Resend } from 'resend';
 import { contactSchema } from '../lib/schemas';
+import dbConnect from "@/lib/db";
+import Quote from "@/models/Quote";
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export type FormState = {
@@ -30,7 +33,23 @@ export async function sendEmail(
   const { name, email, phone, message } = validatedFields.data;
 
   try {
-    
+    // 1. Connect to Database and Save Quote
+    await dbConnect();
+
+    try {
+      await Quote.create({
+        name,
+        email,
+        phone,
+        message,
+      });
+      console.log("Devis sauvegardé en base de données.");
+    } catch (dbError) {
+      console.error("Erreur lors de la sauvegarde en base de données:", dbError);
+      // We continue to send email even if DB save fails
+    }
+
+    // 2. Send Email to Admin
     const { error: adminError } = await resend.emails.send({
       from: 'Nouveau devis MCS <no-reply@devis.mieux-chezsoi.fr>',
       to: ['lallaliralys@gmail.com', 'contact@mieux-chezsoi.fr'],
@@ -53,11 +72,11 @@ export async function sendEmail(
       };
     }
 
-    
+    // 3. Send Confirmation Email to Client
     const { error: clientError } = await resend.emails.send({
       from: 'Mieux Chez Soi <no-reply@devis.mieux-chezsoi.fr>',
-      to: [email], 
-      bcc: ['mieux-chezsoi.fr+e8a111b5c1@invite.trustpilot.com'], 
+      to: [email],
+      bcc: ['mieux-chezsoi.fr+e8a111b5c1@invite.trustpilot.com'],
       replyTo: 'contact@mieux-chezsoi.fr',
       subject: `Confirmation de votre demande de devis - Mieux Chez Soi`,
       html: `
@@ -78,7 +97,7 @@ export async function sendEmail(
 
     if (clientError) {
       console.error("Erreur envoi Client:", clientError);
-      
+      // We don't fail the request if client email fails, as admin email was sent
     }
 
     return {
