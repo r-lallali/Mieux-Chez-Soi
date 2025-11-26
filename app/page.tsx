@@ -127,21 +127,13 @@ export default function HomePage() {
         variants={sectionVariants}
       >
         <div className={`${layoutStyles.container} ${layoutStyles.maxWidthLg}`}>
-          <motion.h2
-            className={layoutStyles.sectionTitle}
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }}
-            viewport={{ once: true }}
-          >
-            Demander un Devis Gratuit
-          </motion.h2>
           <motion.p
             className={layoutStyles.sectionDescription}
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0, transition: { delay: 0.3, duration: 0.5 } }}
             viewport={{ once: true }}
           >
-            Décrivez nous votre projet.
+            Décrivez-nous votre projet, demandez un devis gratuitement.
           </motion.p>
           <ContactFormStepper />
         </div>
