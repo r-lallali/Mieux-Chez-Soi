@@ -32,6 +32,6 @@ const QuoteSchema: Schema = new Schema({
 });
 
 // Prevent OverwriteModelError upon hot reload
-const Quote: Model<IQuote> = mongoose.models.Quote || mongoose.model<IQuote>('Quote', QuoteSchema);
+const Quote: Model<IQuote> = mongoose.models.Devis || mongoose.model<IQuote>('Devis', QuoteSchema);
 
 export default Quote;
