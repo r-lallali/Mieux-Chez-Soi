@@ -68,6 +68,7 @@ export default function ContactFormStepper() {
     name: "",
     email: "",
     phone: "",
+    city: "",
     message: "",
   });
 
@@ -115,9 +116,9 @@ export default function ContactFormStepper() {
     if (state.success) {
       setCurrentStep(3);
       formRef.current?.reset();
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", city: "", message: "" });
     } else if (state.message && !state.success && state.errors) {
-      if (state.errors.name || state.errors.email || state.errors.phone) {
+      if (state.errors.name || state.errors.email || state.errors.phone || state.errors.city) {
         setCurrentStep(1);
       } else if (state.errors.message) {
         setCurrentStep(2);
@@ -201,19 +202,35 @@ export default function ContactFormStepper() {
                   )}
                 </div>
               </div>
-              <div className={styles.inputField}>
-                <label htmlFor="phone" className={styles.label}>Téléphone*</label>
-                <input
-                  type="tel" id="phone" name="phone"
-                  className={styles.input}
-                  value={formData.phone}
-                  onChange={handleChange}
-                />
-                {(clientErrors?.phone || state.errors?.phone) && (
-                  <p className={styles.errorText}>
-                    {clientErrors?.phone?.[0] || state.errors?.phone?.[0]}
-                  </p>
-                )}
+              <div className={styles.inputGroup}>
+                <div className={styles.inputField}>
+                  <label htmlFor="phone" className={styles.label}>Téléphone*</label>
+                  <input
+                    type="tel" id="phone" name="phone"
+                    className={styles.input}
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                  {(clientErrors?.phone || state.errors?.phone) && (
+                    <p className={styles.errorText}>
+                      {clientErrors?.phone?.[0] || state.errors?.phone?.[0]}
+                    </p>
+                  )}
+                </div>
+                <div className={styles.inputField}>
+                  <label htmlFor="city" className={styles.label}>Ville*</label>
+                  <input
+                    type="text" id="city" name="city" required
+                    className={styles.input}
+                    value={formData.city}
+                    onChange={handleChange}
+                  />
+                  {(clientErrors?.city || state.errors?.city) && (
+                    <p className={styles.errorText}>
+                      {clientErrors?.city?.[0] || state.errors?.city?.[0]}
+                    </p>
+                  )}
+                </div>
               </div>
               <div className={styles.navigationButtons}>
                 <button type="button" onClick={handleNextStep} className={styles.nextButton}>
@@ -234,6 +251,7 @@ export default function ContactFormStepper() {
               <input type="hidden" name="name" value={formData.name} />
               <input type="hidden" name="email" value={formData.email} />
               <input type="hidden" name="phone" value={formData.phone} />
+              <input type="hidden" name="city" value={formData.city} />
               <h3 className={styles.stepTitle}>2. Votre Projet</h3>
               <div className={styles.inputField}>
                 <label htmlFor="message" className={styles.label}>Décrivez votre projet*</label>

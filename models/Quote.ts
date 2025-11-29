@@ -4,6 +4,7 @@ export interface IQuote extends Document {
     name: string;
     email: string;
     phone: string;
+    city: string;
     message: string;
     createdAt: Date;
 }
@@ -20,6 +21,10 @@ const QuoteSchema: Schema = new Schema({
     phone: {
         type: String,
         required: [true, 'Le téléphone est requis'],
+    },
+    city: {
+        type: String,
+        required: [true, 'La ville est requise'],
     },
     message: {
         type: String,

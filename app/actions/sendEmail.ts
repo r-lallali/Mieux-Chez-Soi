@@ -30,7 +30,7 @@ export async function sendEmail(
     };
   }
 
-  const { name, email, phone, message } = validatedFields.data;
+  const { name, email, phone, city, message } = validatedFields.data;
 
   try {
     // 1. Connect to Database and Save Quote
@@ -41,6 +41,7 @@ export async function sendEmail(
         name,
         email,
         phone,
+        city,
         message,
       });
       console.log("Devis sauvegardé en base de données.");
@@ -58,6 +59,7 @@ export async function sendEmail(
         <p><strong>Nom:</strong> ${name}</p>
         <p><strong>Email du client:</strong> ${email}</p>
         <p><strong>Téléphone:</strong> ${phone || 'Non fourni'}</p>
+        <p><strong>Ville:</strong> ${city}</p>
         <hr>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, "<br>")}</p>
@@ -106,7 +108,7 @@ export async function sendEmail(
       await fetch(`${dashboardUrl}/api/external/quote`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, message }),
+        body: JSON.stringify({ name, email, phone, city, message }),
       });
     } catch (dashboardError) {
       console.error("Erreur envoi Dashboard:", dashboardError);
