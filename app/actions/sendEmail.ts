@@ -100,6 +100,19 @@ export async function sendEmail(
       // We don't fail the request if client email fails, as admin email was sent
     }
 
+    // 4. Send to MCS Dashboard
+    try {
+      const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || 'https://dashboard.mieux-chezsoi.fr';
+      await fetch(`${dashboardUrl}/api/external/quote`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, message }),
+      });
+    } catch (dashboardError) {
+      console.error("Erreur envoi Dashboard:", dashboardError);
+      // Don't fail the whole request
+    }
+
     return {
       success: true,
       message: "Merci ! Votre message a bien été envoyé. Nous vous recontacterons bientôt.",
