@@ -102,7 +102,7 @@ export async function sendEmail(
 
     // 4. Send to MCS Dashboard
     try {
-      const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || 'https://dashboard.mieux-chezsoi.fr';
+      const dashboardUrl = 'https://dashboard.mieux-chezsoi.fr';
       await fetch(`${dashboardUrl}/api/external/quote`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
