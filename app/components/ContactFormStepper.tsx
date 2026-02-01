@@ -77,9 +77,16 @@ export default function ContactFormStepper() {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+
+    // Limiter le téléphone à 10 chiffres maximum
+    let processedValue = value;
+    if (name === "phone") {
+      processedValue = value.replace(/\D/g, "").slice(0, 10);
+    }
+
     setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name]: processedValue,
     }));
 
     if (clientErrors && clientErrors[name]) {
