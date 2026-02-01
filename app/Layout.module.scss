@@ -1,29 +1,27 @@
-
-
-
-$primary-color: #9A1B2F; 
-$primary-color-dark: #7a1525; 
-$secondary-color: #ef4444; 
-$text-color: #1f2937; 
-$bg-color: #f9fafb; 
+$primary-color: #9A1B2F;
+$primary-color-dark: #7a1525;
+$secondary-color: #ef4444;
+$text-color: #1f2937;
+$bg-color: #f9fafb;
 
 :global(html) {
   scroll-behavior: smooth;
 }
 
 .body {
-  font-family: var(--font-inter); 
+  font-family: var(--font-inter);
   color: $text-color;
   background-color: $bg-color;
   margin: 0;
   padding: 0;
-  box-sizing: border-box; 
+  padding-top: 5rem;
+  box-sizing: border-box;
 }
 
 
 :global(a) {
   text-decoration: none;
-  color: inherit; 
+  color: inherit;
 }
 
 .footer {
@@ -90,13 +88,13 @@ $bg-color: #f9fafb;
   padding-right: 1rem;
 
   @media (min-width: 640px) {
-    
+
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
   @media (min-width: 1024px) {
-    
+
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -105,26 +103,26 @@ $bg-color: #f9fafb;
 .section {
   padding-top: 4rem;
   padding-bottom: 4rem;
-  background-color: white; 
+  background-color: white;
 }
 
 .sectionTitle {
-  font-size: 2.25rem; 
-  font-weight: 700; 
+  font-size: 2.25rem;
+  font-weight: 700;
   text-align: center;
   color: $text-color;
-  margin-bottom: 3rem; 
+  margin-bottom: 3rem;
 }
 
 
 
 .sectionBgGray {
-  background-color: #f3f4f6; 
+  background-color: #f3f4f6;
 }
 
 .maxWidthLg {
-  
-  
+
+
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
@@ -132,11 +130,11 @@ $bg-color: #f9fafb;
 
 .sectionDescription {
   text-align: center;
-  color: #4b5563; 
-  margin-bottom: 2rem; 
-  max-width: 42rem; 
+  color: #4b5563;
+  margin-bottom: 2rem;
+  max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
-  font-size: 1.125rem; 
+  font-size: 1.125rem;
   line-height: 1.6;
 }
