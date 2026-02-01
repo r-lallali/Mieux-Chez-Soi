@@ -1,12 +1,19 @@
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css"; 
-import styles from './Layout.module.scss'; 
+import "./globals.css";
+import styles from './Layout.module.scss';
 
 import Header from './components/Header'
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: "Mieux Chez-Soi",
@@ -23,10 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={inter.className}>
-      <body className={styles.body}> 
+      <body className={styles.body}>
         <Header />
         <main>{children}</main>
-        
+
         <footer className={styles.footer}>
           <div className={styles.footerContent}>
             <p className={styles.footerZone}>
