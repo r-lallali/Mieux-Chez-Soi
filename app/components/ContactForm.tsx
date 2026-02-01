@@ -1,5 +1,5 @@
 
-"use client"; 
+"use client";
 
 import { useFormState, useFormStatus } from "react-dom";
 import { sendEmail, type FormState } from "../actions/sendEmail";
@@ -13,7 +13,7 @@ const initialState: FormState = {
 
 
 function SubmitButton() {
-  const { pending } = useFormStatus(); 
+  const { pending } = useFormStatus();
 
   return (
     <button
@@ -27,11 +27,11 @@ function SubmitButton() {
 }
 
 export default function ContactForm() {
-  
+
   const [state, formAction] = useFormState(sendEmail, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
-  
+
   useEffect(() => {
     if (state.success) {
       formRef.current?.reset();
@@ -40,7 +40,7 @@ export default function ContactForm() {
 
   return (
     <form ref={formRef} action={formAction} className="space-y-4">
-      {}
+      { }
       {!state.success && state.message && (
         <div className="text-red-600 p-3 bg-red-100 rounded-md">
           {state.message}
@@ -72,10 +72,13 @@ export default function ContactForm() {
           )}
         </div>
       </div>
-      
+
       <div>
         <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone (Optionnel)</label>
         <input type="tel" id="phone" name="phone"
+          maxLength={10}
+          pattern="[0-9]*"
+          inputMode="numeric"
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
         />
       </div>
