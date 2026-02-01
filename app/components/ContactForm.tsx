@@ -3,7 +3,7 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 import { sendEmail, type FormState } from "../actions/sendEmail";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const initialState: FormState = {
@@ -30,6 +30,12 @@ export default function ContactForm() {
 
   const [state, formAction] = useFormState(sendEmail, initialState);
   const formRef = useRef<HTMLFormElement>(null);
+  const [phone, setPhone] = useState("");
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+    setPhone(value);
+  };
 
 
   useEffect(() => {
@@ -76,8 +82,8 @@ export default function ContactForm() {
       <div>
         <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone (Optionnel)</label>
         <input type="tel" id="phone" name="phone"
-          maxLength={10}
-          pattern="[0-9]*"
+          value={phone}
+          onChange={handlePhoneChange}
           inputMode="numeric"
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
         />
