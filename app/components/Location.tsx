@@ -17,7 +17,7 @@ export default function Location() {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
-  
+
   const mapVariants: Variants = {
     hidden: { opacity: 0, x: 50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -27,7 +27,7 @@ export default function Location() {
     <>
       <h2 className={layoutStyles.sectionTitle}>Nous Trouver</h2>
       <div className={styles.locationGrid}>
-        <motion.div 
+        <motion.div
           className={styles.contactInfo}
           initial="hidden"
           whileInView="visible"
@@ -67,7 +67,7 @@ export default function Location() {
           </ul>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className={styles.mapContainer}
           initial="hidden"
           whileInView="visible"
@@ -79,7 +79,8 @@ export default function Location() {
             width="100%"
             height="100%"
             style={{ border: 0 }}
-            allowFullScreen={false}
+            allowFullScreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Carte de localisation de Mieux Chez Soi"
